@@ -9,12 +9,17 @@ int quit();
 
 int loadImages();
 
+void handleEvents();
+void render();
+
 SDL_Window* gWindow;
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 800;
 
 SDL_Surface* gScreen;
 SDL_Surface* gShipSurf;
+
+int gRunning = 1;
 
 int main(int argc, char** argv)
 {
@@ -23,31 +28,11 @@ int main(int argc, char** argv)
 
   loadImages();
 
-  SDL_Event event;
-  int running = 1;
-
-  while(running)
+  while(gRunning)
   {
-    while(SDL_PollEvent(&event))
-    {
-      if (event.type == SDL_WINDOWEVENT)
-      {
-        if (event.window.event == SDL_WINDOWEVENT_CLOSE)
-        {
-          running = 0;
-        }
-      }
-      if (event.type == SDL_KEYDOWN)
-      {
-        if (event.key.keysym.sym == SDLK_ESCAPE)
-        {
-          running = 0;
-        }
-      }
-    }
+    handleEvents();
 
-  SDL_BlitSurface(gShipSurf, NULL, gScreen, NULL);
-  SDL_UpdateWindowSurface(gWindow);
+    render();
   }
 
   quit();
@@ -106,4 +91,33 @@ int loadImages()
   }
 
   return success;
+}
+
+void handleEvents()
+{
+  SDL_Event event;
+
+  while(SDL_PollEvent(&event))
+  {
+    if (event.type == SDL_WINDOWEVENT)
+    {
+      if (event.window.event == SDL_WINDOWEVENT_CLOSE)
+      {
+        gRunning = 0;
+      }
+    }
+    if (event.type == SDL_KEYDOWN)
+    {
+      if (event.key.keysym.sym == SDLK_ESCAPE)
+      {
+        gRunning = 0;
+      }
+    }
+  }
+}
+
+void render()
+{
+  SDL_BlitSurface(gShipSurf, NULL, gScreen, NULL);
+  SDL_UpdateWindowSurface(gWindow);
 }
