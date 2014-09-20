@@ -23,10 +23,32 @@ int main(int argc, char** argv)
 
   loadImages();
 
+  SDL_Event event;
+  int running = 1;
+
+  while(running)
+  {
+    while(SDL_PollEvent(&event))
+    {
+      if (event.type == SDL_WINDOWEVENT)
+      {
+        if (event.window.event == SDL_WINDOWEVENT_CLOSE)
+        {
+          running = 0;
+        }
+      }
+      if (event.type == SDL_KEYDOWN)
+      {
+        if (event.key.keysym.sym == SDLK_ESCAPE)
+        {
+          running = 0;
+        }
+      }
+    }
+
   SDL_BlitSurface(gShipSurf, NULL, gScreen, NULL);
   SDL_UpdateWindowSurface(gWindow);
-
-  SDL_Delay(3000);
+  }
 
   quit();
   return 0;
