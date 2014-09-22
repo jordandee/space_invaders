@@ -18,7 +18,6 @@ const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 800;
 
 SDL_Surface* gScreen;
-SDL_Surface* gShipSurf;
 
 struct Ship
 {
@@ -26,7 +25,13 @@ struct Ship
   float y;
 
   SDL_Rect rect;
+  SDL_Surface* surf;
+
 } ship;
+
+void ship_init();
+void ship_logic();
+void ship_render();
 
 int gRunning = 1;
 
@@ -36,6 +41,8 @@ int main(int argc, char** argv)
     return 1;
 
   loadImages();
+
+  ship_init();
 
   while(gRunning)
   {
@@ -81,7 +88,7 @@ int init()
 // Free Surfaces, Destroy window, Shutdown SDL2
 int quit()
 {
-  SDL_FreeSurface(gShipSurf);
+  SDL_FreeSurface(ship.surf);
   SDL_DestroyWindow(gWindow);
   SDL_Quit();
 
@@ -94,8 +101,8 @@ int loadImages()
   int success = 1;
 
   // bmp format needs to be 24 bit, R8G8B8
-  gShipSurf = SDL_LoadBMP("ship.bmp");
-  if (gShipSurf == NULL)
+  ship.surf = SDL_LoadBMP("ship.bmp");
+  if (ship.surf == NULL)
   {
     printf("Ship BMP load failed: %s\n", SDL_GetError());
     success = 0;
@@ -119,24 +126,56 @@ void handleEvents()
     }
     if (event.type == SDL_KEYDOWN)
     {
-      if (event.key.keysym.sym == SDLK_ESCAPE)
+      switch(event.key.keysym.sym)
       {
-        gRunning = 0;
+        case SDLK_ESCAPE:
+          gRunning = 0;
+          break;
+        case SDLK_d:
+        case SDLK_RIGHT:
+          ship.x += 2.5f;
+          break;
+        case SDLK_a:
+        case SDLK_LEFT:
+          ship.x -= 2.5f;
+          break;
+        default:
+          break;
       }
     }
   }
 }
 
+void ship_init()
+{
+  ship.rect.w = ship.surf->w;
+  ship.rect.h = ship.surf->h;
+  ship.x = SCREEN_WIDTH/2 - ship.rect.w/2;
+  ship.y = SCREEN_HEIGHT*.8f;
+}
+
+void ship_logic()
+{
+  ship.rect.x = (int)ship.x;
+  ship.rect.y = (int)ship.y;
+}
+
 void logic()
 {
-  ship.x = SCREEN_WIDTH/2;
-  ship.y = SCREEN_HEIGHT*.8f;
-  ship.rect.x = ship.x;
-  ship.rect.y = ship.y;
+  ship_logic();
+}
+
+void ship_render()
+{
+  SDL_BlitSurface(ship.surf, NULL, gScreen, &ship.rect);
 }
 
 void render()
 {
-  SDL_BlitSurface(gShipSurf, NULL, gScreen, &ship.rect);
+  // Set screen to color black AARRGGBB
+  SDL_FillRect(gScreen, &gScreen->clip_rect, 0x00000000);
+
+  ship_render();
+
   SDL_UpdateWindowSurface(gWindow);
 }
