@@ -10,6 +10,7 @@ int quit();
 int loadImages();
 
 void handleEvents();
+void logic();
 void render();
 
 SDL_Window* gWindow;
@@ -18,6 +19,14 @@ const int SCREEN_HEIGHT = 800;
 
 SDL_Surface* gScreen;
 SDL_Surface* gShipSurf;
+
+struct Ship
+{
+  float x;
+  float y;
+
+  SDL_Rect rect;
+} ship;
 
 int gRunning = 1;
 
@@ -31,6 +40,8 @@ int main(int argc, char** argv)
   while(gRunning)
   {
     handleEvents();
+
+    logic();
 
     render();
   }
@@ -116,8 +127,16 @@ void handleEvents()
   }
 }
 
+void logic()
+{
+  ship.x = SCREEN_WIDTH/2;
+  ship.y = SCREEN_HEIGHT*.8f;
+  ship.rect.x = ship.x;
+  ship.rect.y = ship.y;
+}
+
 void render()
 {
-  SDL_BlitSurface(gShipSurf, NULL, gScreen, NULL);
+  SDL_BlitSurface(gShipSurf, NULL, gScreen, &ship.rect);
   SDL_UpdateWindowSurface(gWindow);
 }
