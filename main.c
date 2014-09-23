@@ -124,25 +124,23 @@ void handleEvents()
         gRunning = 0;
       }
     }
-    if (event.type == SDL_KEYDOWN)
-    {
-      switch(event.key.keysym.sym)
-      {
-        case SDLK_ESCAPE:
-          gRunning = 0;
-          break;
-        case SDLK_d:
-        case SDLK_RIGHT:
-          ship.x += 2.5f;
-          break;
-        case SDLK_a:
-        case SDLK_LEFT:
-          ship.x -= 2.5f;
-          break;
-        default:
-          break;
-      }
-    }
+  }
+
+  const Uint8* state = SDL_GetKeyboardState(NULL);
+
+  if (state[SDL_SCANCODE_ESCAPE])
+  {
+    gRunning = 0;
+  }
+
+  if (state[SDL_SCANCODE_D] || state[SDL_SCANCODE_RIGHT])
+  {
+    ship.x += .5f;
+  }
+
+  if (state[SDL_SCANCODE_A] || state[SDL_SCANCODE_LEFT])
+  {
+    ship.x -= .5f;
   }
 }
 

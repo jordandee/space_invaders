@@ -1,5 +1,3 @@
-switch from polling for keys to checking for keys currently pressed
-
 add 1 enemy, create necessary structs and functions to display an enemy
 create and display grid of enemies
 
@@ -10,3 +8,7 @@ add ability to shoot to main ship
 
 figure out how to display fps
 figure out how to cap fps (maybe just with vsync for this game?)
+
+////////////////////////////////////////////////////////////////////////////
+
+-switch from polling for keys to checking for keys currently pressed
