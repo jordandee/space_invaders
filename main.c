@@ -33,6 +33,21 @@ void ship_init();
 void ship_logic();
 void ship_render();
 
+struct Enemy
+{
+  float x;
+  float y;
+
+  int direction;
+
+  SDL_Rect rect;
+  SDL_Surface* surf;
+} enemy;
+
+void enemy_init();
+void enemy_logic();
+void enemy_render();
+
 int gRunning = 1;
 
 int main(int argc, char** argv)
@@ -43,6 +58,7 @@ int main(int argc, char** argv)
   loadImages();
 
   ship_init();
+  enemy_init();
 
   while(gRunning)
   {
@@ -89,6 +105,7 @@ int init()
 int quit()
 {
   SDL_FreeSurface(ship.surf);
+  SDL_FreeSurface(enemy.surf);
   SDL_DestroyWindow(gWindow);
   SDL_Quit();
 
@@ -105,6 +122,13 @@ int loadImages()
   if (ship.surf == NULL)
   {
     printf("Ship BMP load failed: %s\n", SDL_GetError());
+    success = 0;
+  }
+
+  enemy.surf = SDL_LoadBMP("enemy2a.bmp");
+  if (enemy.surf == NULL)
+  {
+    printf("Enemy BMP load failed: %s\n", SDL_GetError());
     success = 0;
   }
 
@@ -144,6 +168,23 @@ void handleEvents()
   }
 }
 
+void logic()
+{
+  ship_logic();
+  enemy_logic();
+}
+
+void render()
+{
+  // Set screen to color black AARRGGBB
+  SDL_FillRect(gScreen, &gScreen->clip_rect, 0x00000000);
+
+  ship_render();
+  enemy_render();
+
+  SDL_UpdateWindowSurface(gWindow);
+}
+
 void ship_init()
 {
   ship.rect.w = ship.surf->w;
@@ -158,22 +199,34 @@ void ship_logic()
   ship.rect.y = (int)ship.y;
 }
 
-void logic()
-{
-  ship_logic();
-}
-
 void ship_render()
 {
   SDL_BlitSurface(ship.surf, NULL, gScreen, &ship.rect);
 }
 
-void render()
+void enemy_init()
 {
-  // Set screen to color black AARRGGBB
-  SDL_FillRect(gScreen, &gScreen->clip_rect, 0x00000000);
+  enemy.direction = 1;
+  enemy.rect.w = enemy.surf->w;
+  enemy.rect.h = enemy.surf->h;
+  enemy.x = SCREEN_WIDTH/2 - enemy.rect.w/2;
+  enemy.y = SCREEN_HEIGHT*.2f;
+}
 
-  ship_render();
+void enemy_logic()
+{
+  enemy.x += .5f * enemy.direction;
+  if (enemy.x > SCREEN_WIDTH - enemy.rect.w || enemy.x < 0)
+  {
+    enemy.direction *= -1;
+    enemy.y += 16;
+  }
 
-  SDL_UpdateWindowSurface(gWindow);
+  enemy.rect.x = (int)enemy.x;
+  enemy.rect.y = (int)enemy.y;
+}
+
+void enemy_render()
+{
+  SDL_BlitSurface(enemy.surf, NULL, gScreen, &enemy.rect);
 }
