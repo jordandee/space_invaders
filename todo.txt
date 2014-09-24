@@ -1,5 +1,7 @@
 create and display grid of enemies
 
+separate main into various c/h files
+
 add 4 defense structures, create necessary structs/functs to display these
 
 decide how to implement bullets/shooting
@@ -13,3 +15,4 @@ figure out how to cap fps (maybe just with vsync for this game?)
 -switch from polling for keys to checking for keys currently pressed
 
 -add 1 enemy, create necessary structs and functions to display an enemy
+-add other 2 enemy types
