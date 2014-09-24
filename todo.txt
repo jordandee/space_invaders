@@ -1,14 +1,25 @@
-create and display grid of enemies
+animate enemies, make them switch between two looks
 
 separate main into various c/h files
 
 add 4 defense structures, create necessary structs/functs to display these
+add collisions between bullets and defense structures
+decides if defense structures go through set frames to show damage
+ or if they take damage in specific regions depenind on bullet impact
+make defense structures visually show damage
 
 decide how to implement bullets/shooting
 add ability to shoot to main ship
+add ability to shoot to enemies
+
+add collisions between bullets and enemies
+add collisions between bullets and ship
 
 figure out how to display fps
 figure out how to cap fps (maybe just with vsync for this game?)
+
+implement scoring
+add score display in arcade style text
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -16,3 +27,4 @@ figure out how to cap fps (maybe just with vsync for this game?)
 
 -add 1 enemy, create necessary structs and functions to display an enemy
 -add other 2 enemy types
+-create and display grid of enemies

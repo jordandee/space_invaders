@@ -38,15 +38,22 @@ struct Enemy
   float x;
   float y;
 
-  int direction;
-
   SDL_Rect rect;
   SDL_Surface* surf;
-} enemy[3];
+} enemy[11][5];
+
+int enemy_direction;
 
 void enemy_init();
 void enemy_logic();
 void enemy_render();
+
+SDL_Surface* enemysurf1a;
+SDL_Surface* enemysurf1b;
+SDL_Surface* enemysurf2a;
+SDL_Surface* enemysurf2b;
+SDL_Surface* enemysurf3a;
+SDL_Surface* enemysurf3b;
 
 int gRunning = 1;
 
@@ -105,9 +112,9 @@ int init()
 int quit()
 {
   SDL_FreeSurface(ship.surf);
-  SDL_FreeSurface(enemy[0].surf);
-  SDL_FreeSurface(enemy[1].surf);
-  SDL_FreeSurface(enemy[2].surf);
+  SDL_FreeSurface(enemysurf1a);
+  SDL_FreeSurface(enemysurf2a);
+  SDL_FreeSurface(enemysurf3a);
   SDL_DestroyWindow(gWindow);
   SDL_Quit();
 
@@ -127,20 +134,20 @@ int loadImages()
     success = 0;
   }
 
-  enemy[0].surf = SDL_LoadBMP("enemy1a.bmp");
-  if (enemy[0].surf == NULL)
+  enemysurf1a = SDL_LoadBMP("enemy1a.bmp");
+  if (enemysurf1a == NULL)
   {
     printf("Enemy BMP load failed: %s\n", SDL_GetError());
     success = 0;
   }
-  enemy[1].surf = SDL_LoadBMP("enemy2a.bmp");
-  if (enemy[1].surf == NULL)
+  enemysurf2a = SDL_LoadBMP("enemy2a.bmp");
+  if (enemysurf2a == NULL)
   {
     printf("Enemy BMP load failed: %s\n", SDL_GetError());
     success = 0;
   }
-  enemy[2].surf = SDL_LoadBMP("enemy3a.bmp");
-  if (enemy[2].surf == NULL)
+  enemysurf3a = SDL_LoadBMP("enemy3a.bmp");
+  if (enemysurf3a == NULL)
   {
     printf("Enemy BMP load failed: %s\n", SDL_GetError());
     success = 0;
@@ -220,42 +227,81 @@ void ship_render()
 
 void enemy_init()
 {
-  int i;
-  for (i = 0; i < 3; i++)
+  int x, y;
+  for (y = 0; y < 5; y++)
   {
-    enemy[i].direction = 1;
-    enemy[i].rect.w = enemy[i].surf->w;
-    enemy[i].rect.h = enemy[i].surf->h;
-    enemy[i].x = SCREEN_WIDTH/2 - enemy[i].rect.w/2;
+    for (x = 0; x < 11; x++)
+    {
+      if (y == 0)
+      {
+        enemy[x][y].surf = enemysurf1a;
+      }
+      else if (y == 1 || y == 2)
+      {
+        enemy[x][y].surf = enemysurf2a;
+      }
+      else
+      {
+        enemy[x][y].surf = enemysurf3a;
+      }
+    }
   }
-  enemy[0].y = SCREEN_HEIGHT*.1f;
-  enemy[1].y = SCREEN_HEIGHT*.2f;
-  enemy[2].y = SCREEN_HEIGHT*.3f;
+
+  enemy_direction = 1;
+  for (y = 0; y < 5; y++)
+  {
+    for (x = 0; x < 11; x++)
+    {
+      enemy[x][y].rect.w = enemy[x][y].surf->w;
+      enemy[x][y].rect.h = enemy[x][y].surf->h;
+      enemy[x][y].x = 32 * x; //SCREEN_WIDTH/2 - enemy[x][y].rect.w/2;
+      enemy[x][y].y = 32 * y + 64;//SCREEN_HEIGHT * ((y+1.0f)/10.0f);
+
+      // Center enemies, correct offset since images are different sizes
+      if (y == 0)
+        enemy[x][y].x += 4;
+      if (y == 1 || y == 2)
+        enemy[x][y].x += 1;
+    }
+  }
 }
 
 void enemy_logic()
 {
-  int i;
-  for (i = 0; i < 3; i++)
-  {
-    enemy[i].x += .5f * enemy[i].direction;
-    if (enemy[i].x > SCREEN_WIDTH - enemy[i].rect.w || enemy[i].x < 0)
-    {
-      enemy[i].direction *= -1;
-      enemy[i].x += .5f * enemy[i].direction;
-      enemy[i].y += 16;
-    }
+  int x, y;
+  int move_down = 0;
 
-    enemy[i].rect.x = (int)enemy[i].x;
-    enemy[i].rect.y = (int)enemy[i].y;
+  if (enemy[0][0].x < 0 || enemy[0][0].x + (11*32) > SCREEN_WIDTH)
+  {
+    enemy_direction *= -1;
+    move_down = 1;
+  }
+
+  for (y = 0; y < 5; y++)
+  {
+    for (x = 0; x < 11; x++)
+    {
+      enemy[x][y].x += .5f * enemy_direction;
+
+      if (move_down)
+      {
+        enemy[x][y].y += 16;
+      }
+
+      enemy[x][y].rect.x = (int)enemy[x][y].x;
+      enemy[x][y].rect.y = (int)enemy[x][y].y;
+    }
   }
 }
 
 void enemy_render()
 {
-  int i;
-  for (i = 0; i < 3; i++)
+  int x, y;
+  for (y = 0; y < 5; y++)
   {
-    SDL_BlitSurface(enemy[i].surf, NULL, gScreen, &enemy[i].rect);
+    for (x = 0; x < 11; x++)
+    {
+      SDL_BlitSurface(enemy[x][y].surf, NULL, gScreen, &enemy[x][y].rect);
+    }
   }
 }
