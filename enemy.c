@@ -11,15 +11,18 @@ void enemy_init()
     {
       if (y == 0)
       {
-        enemy[x][y].surf = enemysurf1a;
+        enemy[x][y].surf[0] = enemysurf1a;
+        enemy[x][y].surf[1] = enemysurf1b;
       }
       else if (y == 1 || y == 2)
       {
-        enemy[x][y].surf = enemysurf2a;
+        enemy[x][y].surf[0] = enemysurf2a;
+        enemy[x][y].surf[1] = enemysurf2b;
       }
       else
       {
-        enemy[x][y].surf = enemysurf3a;
+        enemy[x][y].surf[0] = enemysurf3a;
+        enemy[x][y].surf[1] = enemysurf3b;
       }
     }
   }
@@ -29,8 +32,8 @@ void enemy_init()
   {
     for (x = 0; x < 11; x++)
     {
-      enemy[x][y].rect.w = enemy[x][y].surf->w;
-      enemy[x][y].rect.h = enemy[x][y].surf->h;
+      enemy[x][y].rect.w = enemy[x][y].surf[0]->w;
+      enemy[x][y].rect.h = enemy[x][y].surf[0]->h;
       enemy[x][y].x = 32 * x; //SCREEN_WIDTH/2 - enemy[x][y].rect.w/2;
       enemy[x][y].y = 32 * y + 64;//SCREEN_HEIGHT * ((y+1.0f)/10.0f);
 
@@ -78,7 +81,14 @@ void enemy_render()
   {
     for (x = 0; x < 11; x++)
     {
-      SDL_BlitSurface(enemy[x][y].surf, NULL, gScreen, &enemy[x][y].rect);
+      if (SDL_GetTicks() % 1500 < 750)
+      {
+        SDL_BlitSurface(enemy[x][y].surf[0], NULL, gScreen, &enemy[x][y].rect);
+      }
+      else
+      {
+        SDL_BlitSurface(enemy[x][y].surf[1], NULL, gScreen, &enemy[x][y].rect);
+      }
     }
   }
 }

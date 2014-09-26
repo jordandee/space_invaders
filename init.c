@@ -38,6 +38,9 @@ int quit()
   SDL_FreeSurface(enemysurf1a);
   SDL_FreeSurface(enemysurf2a);
   SDL_FreeSurface(enemysurf3a);
+  SDL_FreeSurface(enemysurf1b);
+  SDL_FreeSurface(enemysurf2b);
+  SDL_FreeSurface(enemysurf3b);
   SDL_DestroyWindow(gWindow);
   SDL_Quit();
 
@@ -71,6 +74,25 @@ int loadImages()
   }
   enemysurf3a = SDL_LoadBMP("enemy3a.bmp");
   if (enemysurf3a == NULL)
+  {
+    printf("Enemy BMP load failed: %s\n", SDL_GetError());
+    success = 0;
+  }
+
+  enemysurf1b = SDL_LoadBMP("enemy1b.bmp");
+  if (enemysurf1b == NULL)
+  {
+    printf("Enemy BMP load failed: %s\n", SDL_GetError());
+    success = 0;
+  }
+  enemysurf2b = SDL_LoadBMP("enemy2b.bmp");
+  if (enemysurf2b == NULL)
+  {
+    printf("Enemy BMP load failed: %s\n", SDL_GetError());
+    success = 0;
+  }
+  enemysurf3b = SDL_LoadBMP("enemy3b.bmp");
+  if (enemysurf3b == NULL)
   {
     printf("Enemy BMP load failed: %s\n", SDL_GetError());
     success = 0;

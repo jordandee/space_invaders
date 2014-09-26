@@ -7,7 +7,7 @@ struct Enemy
   float y;
 
   SDL_Rect rect;
-  SDL_Surface* surf;
+  SDL_Surface* surf[2];
 } enemy[11][5];
 
 int enemy_direction;

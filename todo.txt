@@ -1,6 +1,3 @@
-figure out how to keep track of ticks/time
-animate enemies, make them switch between two looks
-
 add 4 defense structures, create necessary structs/functs to display these
 add collisions between bullets and defense structures
 decides if defense structures go through set frames to show damage
@@ -29,3 +26,6 @@ add score display in arcade style text
 -create and display grid of enemies
 
 -separate main into various c/h files
+
+-figure out how to keep track of ticks/time
+-animate enemies, make them switch between two looks
