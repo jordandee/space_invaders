@@ -1,4 +1,4 @@
-figure out ideal screen width/height and if i need to scale ship/enemies
+resize screen to 1200x800, scale ship/enemies x2
 
 add 4 defense structures, create necessary structs/functs to display these
 add collisions between bullets and defense structures
@@ -33,3 +33,5 @@ add score display in arcade style text
 
 -figure out how to display fps
 -figure out how to cap fps
+
+-figure out ideal screen width/height and if i need to scale ship/enemies, i'm thinkin 1200x800 with scale x2
