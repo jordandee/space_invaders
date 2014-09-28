@@ -1,3 +1,5 @@
+figure out ideal screen width/height and if i need to scale ship/enemies
+
 add 4 defense structures, create necessary structs/functs to display these
 add collisions between bullets and defense structures
 decides if defense structures go through set frames to show damage
@@ -11,8 +13,7 @@ add ability to shoot to enemies
 add collisions between bullets and enemies
 add collisions between bullets and ship
 
-figure out how to display fps
-figure out how to cap fps (maybe just with vsync for this game?)
+implement displaying/capping fps
 
 implement scoring
 add score display in arcade style text
@@ -29,3 +30,6 @@ add score display in arcade style text
 
 -figure out how to keep track of ticks/time
 -animate enemies, make them switch between two looks
+
+-figure out how to display fps
+-figure out how to cap fps
