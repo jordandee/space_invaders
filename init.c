@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "globals.h"
 #include "ship.h"
+#include "defense.h"
 
 // Initialize SDL2, create window, create screen surface
 int init()
@@ -35,6 +36,10 @@ int init()
 int quit()
 {
   SDL_FreeSurface(ship.surf);
+  SDL_FreeSurface(defense[0].surf);
+  SDL_FreeSurface(defense[1].surf);
+  SDL_FreeSurface(defense[2].surf);
+  SDL_FreeSurface(defense[3].surf);
   SDL_FreeSurface(enemysurf1a);
   SDL_FreeSurface(enemysurf2a);
   SDL_FreeSurface(enemysurf3a);
@@ -58,6 +63,17 @@ int loadImages()
   {
     printf("Ship BMP load failed: %s\n", SDL_GetError());
     success = 0;
+  }
+
+  int i;
+  for (i = 0; i < 4; i++)
+  {
+    defense[i].surf = SDL_LoadBMP("defense.bmp");
+    if (defense[i].surf == NULL)
+    {
+      printf("Defense BMP load failed: %s\n", SDL_GetError());
+      success = 0;
+    }
   }
 
   enemysurf1a = SDL_LoadBMP("enemy1a.bmp");

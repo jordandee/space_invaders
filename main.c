@@ -7,6 +7,7 @@
 #include "init.h"
 #include "ship.h"
 #include "enemy.h"
+#include "defense.h"
 
 void handleEvents();
 void logic();
@@ -21,6 +22,7 @@ int main(int argc, char** argv)
 
   ship_init();
   enemy_init();
+  defense_init();
 
   while(gRunning)
   {
@@ -72,6 +74,7 @@ void logic()
 {
   ship_logic();
   enemy_logic();
+  defense_logic();
 }
 
 void render()
@@ -81,6 +84,7 @@ void render()
 
   ship_render();
   enemy_render();
+  defense_render();
 
   SDL_UpdateWindowSurface(gWindow);
 }
