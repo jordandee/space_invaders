@@ -32,10 +32,10 @@ void enemy_init()
   {
     for (x = 0; x < 11; x++)
     {
-      enemy[x][y].rect.w = enemy[x][y].surf[0]->w;
-      enemy[x][y].rect.h = enemy[x][y].surf[0]->h;
-      enemy[x][y].x = 32 * x; //SCREEN_WIDTH/2 - enemy[x][y].rect.w/2;
-      enemy[x][y].y = 32 * y + 64;//SCREEN_HEIGHT * ((y+1.0f)/10.0f);
+      enemy[x][y].rect.w = enemy[x][y].surf[0]->w * 2;
+      enemy[x][y].rect.h = enemy[x][y].surf[0]->h * 2;
+      enemy[x][y].x = 64 * x; //SCREEN_WIDTH/2 - enemy[x][y].rect.w/2;
+      enemy[x][y].y = 64 * y + 128;//SCREEN_HEIGHT * ((y+1.0f)/10.0f);
 
       // Center enemies, correct offset since images are different sizes
       if (y == 0)
@@ -51,7 +51,7 @@ void enemy_logic()
   int x, y;
   int move_down = 0;
 
-  if (enemy[0][0].x < 0 || enemy[0][0].x + (11*32) > SCREEN_WIDTH)
+  if (enemy[0][0].x < 0 || enemy[0][0].x + (11*64) > SCREEN_WIDTH)
   {
     enemy_direction *= -1;
     move_down = 1;
@@ -61,11 +61,11 @@ void enemy_logic()
   {
     for (x = 0; x < 11; x++)
     {
-      enemy[x][y].x += .5f * enemy_direction;
+      enemy[x][y].x += .4f * enemy_direction;
 
       if (move_down)
       {
-        enemy[x][y].y += 16;
+        enemy[x][y].y += 32;
       }
 
       enemy[x][y].rect.x = (int)enemy[x][y].x;
@@ -83,11 +83,11 @@ void enemy_render()
     {
       if (SDL_GetTicks() % 1500 < 750)
       {
-        SDL_BlitSurface(enemy[x][y].surf[0], NULL, gScreen, &enemy[x][y].rect);
+        SDL_BlitScaled(enemy[x][y].surf[0], NULL, gScreen, &enemy[x][y].rect);
       }
       else
       {
-        SDL_BlitSurface(enemy[x][y].surf[1], NULL, gScreen, &enemy[x][y].rect);
+        SDL_BlitScaled(enemy[x][y].surf[1], NULL, gScreen, &enemy[x][y].rect);
       }
     }
   }

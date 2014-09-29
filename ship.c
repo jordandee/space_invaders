@@ -4,8 +4,8 @@
 
 void ship_init()
 {
-  ship.rect.w = ship.surf->w;
-  ship.rect.h = ship.surf->h;
+  ship.rect.w = ship.surf->w * 2;
+  ship.rect.h = ship.surf->h * 2;
   ship.x = SCREEN_WIDTH/2 - ship.rect.w/2;
   ship.y = SCREEN_HEIGHT*.8f;
 }
@@ -18,5 +18,5 @@ void ship_logic()
 
 void ship_render()
 {
-  SDL_BlitSurface(ship.surf, NULL, gScreen, &ship.rect);
+  SDL_BlitScaled(ship.surf, NULL, gScreen, &ship.rect);
 }
