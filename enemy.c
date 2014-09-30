@@ -46,7 +46,7 @@ void enemy_init()
   }
 }
 
-void enemy_logic()
+void enemy_logic(unsigned long dt)
 {
   int x, y;
   int move_down = 0;
@@ -61,7 +61,7 @@ void enemy_logic()
   {
     for (x = 0; x < 11; x++)
     {
-      enemy[x][y].x += .4f * enemy_direction;
+      enemy[x][y].x += .1f * enemy_direction * dt;
 
       if (move_down)
       {

@@ -1,9 +1,5 @@
-add 4 defense structures, create necessary structs/functs to display these
 add collisions between bullets and defense structures
 make defense structures visually show damage in region they were hit
-
-implement timer to get deltaTime between frames
-implement time independent movement for ship/enemies/bullets
 
 decide how to implement bullets/shooting
 add ability to shoot to main ship
@@ -36,3 +32,8 @@ add score display in arcade style text
 -figure out ideal screen width/height and if i need to scale ship/enemies, i'm thinkin 1200x800 with scale x2
 
 -resize screen to 1000x1000, scale ship/enemies x2
+
+-add 4 defense structures, create necessary structs/functs to display these
+
+-implement timer to get deltaTime between frames
+-implement time independent movement for ship/enemies/bullets

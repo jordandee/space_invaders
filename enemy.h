@@ -13,7 +13,7 @@ struct Enemy
 int enemy_direction;
 
 void enemy_init();
-void enemy_logic();
+void enemy_logic(unsigned long dt);
 void enemy_render();
 
 #endif

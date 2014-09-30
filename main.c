@@ -10,7 +10,7 @@
 #include "defense.h"
 
 void handleEvents();
-void logic();
+void logic(unsigned long dt);
 void render();
 
 int main(int argc, char** argv)
@@ -20,6 +20,9 @@ int main(int argc, char** argv)
 
   loadImages();
 
+  unsigned long lastTicks, deltaTicks;
+  lastTicks = SDL_GetTicks();
+
   ship_init();
   enemy_init();
   defense_init();
@@ -28,7 +31,10 @@ int main(int argc, char** argv)
   {
     handleEvents();
 
-    logic();
+    deltaTicks = SDL_GetTicks() - lastTicks;
+    lastTicks = SDL_GetTicks();
+
+    logic(deltaTicks);
 
     render();
   }
@@ -61,20 +67,20 @@ void handleEvents()
 
   if (state[SDL_SCANCODE_D] || state[SDL_SCANCODE_RIGHT])
   {
-    ship.x += .5f;
+    ship.move_right = 1;
   }
 
   if (state[SDL_SCANCODE_A] || state[SDL_SCANCODE_LEFT])
   {
-    ship.x -= .5f;
+    ship.move_left = 1;
   }
 }
 
-void logic()
+void logic(unsigned long dt)
 {
-  ship_logic();
-  enemy_logic();
-  defense_logic();
+  ship_logic(dt);
+  enemy_logic(dt);
+  defense_logic(dt);
 }
 
 void render()

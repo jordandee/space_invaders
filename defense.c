@@ -14,7 +14,7 @@ void defense_init()
   }
 }
 
-void defense_logic()
+void defense_logic(unsigned long dt)
 {
   int i;
   for (i = 0; i < 4; i++)
