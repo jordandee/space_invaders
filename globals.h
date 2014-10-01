@@ -16,4 +16,7 @@ SDL_Surface* enemysurf2b;
 SDL_Surface* enemysurf3a;
 SDL_Surface* enemysurf3b;
 
+SDL_Surface* bulletsurfa;
+SDL_Surface* bulletsurfb;
+
 #endif

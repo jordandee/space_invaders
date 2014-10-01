@@ -1,9 +1,15 @@
 add collisions between bullets and defense structures
 make defense structures visually show damage in region they were hit
 
-decide how to implement bullets/shooting
-add ability to shoot to main ship
 add ability to shoot to enemies
+figure out bullet timing limitations (time between shots, enemy shot freq)
+add sound to shooting bullets
+
+add special red ship
+add special red ship sounds
+
+implement lives
+show lives at bottom
 
 add collisions between bullets and enemies
 add collisions between bullets and ship
@@ -11,7 +17,12 @@ add collisions between bullets and ship
 implement displaying/capping fps
 
 implement scoring
-add score display in arcade style text
+create missing numbers in arcade style text
+display a static score using arcade style text
+add ability to track score with an integer
+add ability to convert integer to arcade style text
+add/test score display in arcade style text
+add ability to display/store high scores
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -37,3 +48,6 @@ add score display in arcade style text
 
 -implement timer to get deltaTime between frames
 -implement time independent movement for ship/enemies/bullets
+
+-decide how to implement bullets/shooting
+-add ability to shoot to main ship

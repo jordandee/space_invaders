@@ -46,6 +46,8 @@ int quit()
   SDL_FreeSurface(enemysurf1b);
   SDL_FreeSurface(enemysurf2b);
   SDL_FreeSurface(enemysurf3b);
+  SDL_FreeSurface(bulletsurfa);
+  SDL_FreeSurface(bulletsurfb);
   SDL_DestroyWindow(gWindow);
   SDL_Quit();
 
@@ -111,6 +113,19 @@ int loadImages()
   if (enemysurf3b == NULL)
   {
     printf("Enemy BMP load failed: %s\n", SDL_GetError());
+    success = 0;
+  }
+
+  bulletsurfa = SDL_LoadBMP("bulleta.bmp");
+  if (bulletsurfa == NULL)
+  {
+    printf("Bullet BMP load failed: %s\n", SDL_GetError());
+    success = 0;
+  }
+  bulletsurfb = SDL_LoadBMP("bulletb.bmp");
+  if (bulletsurfb == NULL)
+  {
+    printf("Bullet BMP load failed: %s\n", SDL_GetError());
     success = 0;
   }
 

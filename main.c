@@ -8,6 +8,7 @@
 #include "ship.h"
 #include "enemy.h"
 #include "defense.h"
+#include "bullet.h"
 
 void handleEvents();
 void logic(unsigned long dt);
@@ -26,6 +27,7 @@ int main(int argc, char** argv)
   ship_init();
   enemy_init();
   defense_init();
+  bullet_init();
 
   while(gRunning)
   {
@@ -56,6 +58,13 @@ void handleEvents()
         gRunning = 0;
       }
     }
+    else if (event.type == SDL_KEYDOWN)
+    {
+      if (event.key.keysym.sym == SDLK_SPACE)
+      {
+        bullet_fire(ship.rect.x + ship.rect.w/2 - 1, ship.rect.y, 1);
+      }
+    }
   }
 
   const Uint8* state = SDL_GetKeyboardState(NULL);
@@ -81,6 +90,7 @@ void logic(unsigned long dt)
   ship_logic(dt);
   enemy_logic(dt);
   defense_logic(dt);
+  bullet_logic(dt);
 }
 
 void render()
@@ -91,6 +101,7 @@ void render()
   ship_render();
   enemy_render();
   defense_render();
+  bullet_render();
 
   SDL_UpdateWindowSurface(gWindow);
 }
