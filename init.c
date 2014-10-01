@@ -60,7 +60,7 @@ int loadImages()
   int success = 1;
 
   // bmp format needs to be 24 bit, R8G8B8
-  ship.surf = SDL_LoadBMP("ship.bmp");
+  ship.surf = SDL_LoadBMP("images/ship.bmp");
   if (ship.surf == NULL)
   {
     printf("Ship BMP load failed: %s\n", SDL_GetError());
@@ -70,7 +70,7 @@ int loadImages()
   int i;
   for (i = 0; i < 4; i++)
   {
-    defense[i].surf = SDL_LoadBMP("defense.bmp");
+    defense[i].surf = SDL_LoadBMP("images/defense.bmp");
     if (defense[i].surf == NULL)
     {
       printf("Defense BMP load failed: %s\n", SDL_GetError());
@@ -78,51 +78,51 @@ int loadImages()
     }
   }
 
-  enemysurf1a = SDL_LoadBMP("enemy1a.bmp");
+  enemysurf1a = SDL_LoadBMP("images/enemy1a.bmp");
   if (enemysurf1a == NULL)
   {
     printf("Enemy BMP load failed: %s\n", SDL_GetError());
     success = 0;
   }
-  enemysurf2a = SDL_LoadBMP("enemy2a.bmp");
+  enemysurf2a = SDL_LoadBMP("images/enemy2a.bmp");
   if (enemysurf2a == NULL)
   {
     printf("Enemy BMP load failed: %s\n", SDL_GetError());
     success = 0;
   }
-  enemysurf3a = SDL_LoadBMP("enemy3a.bmp");
+  enemysurf3a = SDL_LoadBMP("images/enemy3a.bmp");
   if (enemysurf3a == NULL)
   {
     printf("Enemy BMP load failed: %s\n", SDL_GetError());
     success = 0;
   }
 
-  enemysurf1b = SDL_LoadBMP("enemy1b.bmp");
+  enemysurf1b = SDL_LoadBMP("images/enemy1b.bmp");
   if (enemysurf1b == NULL)
   {
     printf("Enemy BMP load failed: %s\n", SDL_GetError());
     success = 0;
   }
-  enemysurf2b = SDL_LoadBMP("enemy2b.bmp");
+  enemysurf2b = SDL_LoadBMP("images/enemy2b.bmp");
   if (enemysurf2b == NULL)
   {
     printf("Enemy BMP load failed: %s\n", SDL_GetError());
     success = 0;
   }
-  enemysurf3b = SDL_LoadBMP("enemy3b.bmp");
+  enemysurf3b = SDL_LoadBMP("images/enemy3b.bmp");
   if (enemysurf3b == NULL)
   {
     printf("Enemy BMP load failed: %s\n", SDL_GetError());
     success = 0;
   }
 
-  bulletsurfa = SDL_LoadBMP("bulleta.bmp");
+  bulletsurfa = SDL_LoadBMP("images/bulleta.bmp");
   if (bulletsurfa == NULL)
   {
     printf("Bullet BMP load failed: %s\n", SDL_GetError());
     success = 0;
   }
-  bulletsurfb = SDL_LoadBMP("bulletb.bmp");
+  bulletsurfb = SDL_LoadBMP("images/bulletb.bmp");
   if (bulletsurfb == NULL)
   {
     printf("Bullet BMP load failed: %s\n", SDL_GetError());
