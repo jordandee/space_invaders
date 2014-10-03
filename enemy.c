@@ -1,6 +1,7 @@
 #include <SDL2/SDL.h>
 #include "globals.h"
 #include "enemy.h"
+#include "bullet.h"
 
 void enemy_init()
 {
@@ -70,6 +71,11 @@ void enemy_logic(unsigned long dt)
 
       enemy[x][y].rect.x = (int)enemy[x][y].x;
       enemy[x][y].rect.y = (int)enemy[x][y].y;
+
+      if (rand() % 100000 < 2*dt)
+      {
+        bullet_fire(enemy[x][y].rect.x + enemy[x][y].rect.w/2 - 2, enemy[x][y].rect.y + enemy[x][y].rect.h - 1, 0);
+      }
     }
   }
 }

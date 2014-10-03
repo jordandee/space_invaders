@@ -24,6 +24,8 @@ int main(int argc, char** argv)
   unsigned long lastTicks, deltaTicks;
   lastTicks = SDL_GetTicks();
 
+  srand(SDL_GetTicks());
+
   ship_init();
   enemy_init();
   defense_init();

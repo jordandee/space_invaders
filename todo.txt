@@ -1,7 +1,6 @@
 add collisions between bullets and defense structures
 make defense structures visually show damage in region they were hit
 
-add ability to shoot to enemies
 figure out bullet timing limitations (time between shots, enemy shot freq)
 add sound to shooting bullets
 
@@ -51,3 +50,4 @@ add ability to display/store high scores
 
 -decide how to implement bullets/shooting
 -add ability to shoot to main ship
+-add ability to shoot to enemies

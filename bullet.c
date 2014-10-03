@@ -23,7 +23,16 @@ void bullet_fire(int x, int y, int friendly)
       bullets[i].friendly = friendly;
       bullets[i].x = x;
       bullets[i].y = y;
-      bullets[i].surf = bulletsurfa;
+
+      if (bullets[i].friendly)
+      {
+        bullets[i].surf = bulletsurfa;
+      }
+      else
+      {
+        bullets[i].surf = bulletsurfb;
+      }
+
       bullets[i].rect.w = bullets[i].surf->w * 2;
       bullets[i].rect.h = bullets[i].surf->h * 2;
       break;
@@ -48,10 +57,14 @@ void bullet_logic(unsigned long dt)
       {
         bullets[i].y -= .2f * dt;
       }
+      else
+      {
+        bullets[i].y += .2f * dt;
+      }
       bullets[i].rect.x = (int)bullets[i].x;
       bullets[i].rect.y = (int)bullets[i].y;
 
-      if (bullets[i].rect.y + bullets[i].rect.h < 0)
+      if (bullets[i].rect.y + bullets[i].rect.h < 0 || bullets[i].rect.y > SCREEN_HEIGHT)
       {
         bullet_destroy(i);
       }
