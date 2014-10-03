@@ -9,6 +9,7 @@
 #include "enemy.h"
 #include "defense.h"
 #include "bullet.h"
+#include "collision.h"
 
 void handleEvents();
 void logic(unsigned long dt);
@@ -93,6 +94,8 @@ void logic(unsigned long dt)
   enemy_logic(dt);
   defense_logic(dt);
   bullet_logic(dt);
+
+  checkCollisions();
 }
 
 void render()

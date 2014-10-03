@@ -10,7 +10,8 @@ add special red ship sounds
 implement lives
 show lives at bottom
 
-add collisions between bullets and enemies
+add blowing up frame to enemies being destroyed
+
 add collisions between bullets and ship
 
 implement displaying/capping fps
@@ -51,3 +52,5 @@ add ability to display/store high scores
 -decide how to implement bullets/shooting
 -add ability to shoot to main ship
 -add ability to shoot to enemies
+
+-add collisions between bullets and enemies

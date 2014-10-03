@@ -10,6 +10,7 @@ void enemy_init()
   {
     for (x = 0; x < 11; x++)
     {
+      enemy[x][y].alive = 1;
       if (y == 0)
       {
         enemy[x][y].surf[0] = enemysurf1a;
@@ -87,13 +88,16 @@ void enemy_render()
   {
     for (x = 0; x < 11; x++)
     {
-      if (SDL_GetTicks() % 1500 < 750)
+      if (enemy[x][y].alive)
       {
-        SDL_BlitScaled(enemy[x][y].surf[0], NULL, gScreen, &enemy[x][y].rect);
-      }
-      else
-      {
-        SDL_BlitScaled(enemy[x][y].surf[1], NULL, gScreen, &enemy[x][y].rect);
+        if (SDL_GetTicks() % 1500 < 750)
+        {
+          SDL_BlitScaled(enemy[x][y].surf[0], NULL, gScreen, &enemy[x][y].rect);
+        }
+        else
+        {
+          SDL_BlitScaled(enemy[x][y].surf[1], NULL, gScreen, &enemy[x][y].rect);
+        }
       }
     }
   }

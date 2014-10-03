@@ -6,6 +6,8 @@ struct Enemy
   float x;
   float y;
 
+  int alive;
+
   SDL_Rect rect;
   SDL_Surface* surf[2];
 } enemy[11][5];
