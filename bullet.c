@@ -15,6 +15,15 @@ void bullet_init()
 void bullet_fire(int x, int y, int friendly)
 {
   int i;
+
+  // If active ship bullet exists, don't let another one shoot
+  for (i = 0; i < 10; i++)
+  {
+    if (friendly && bullets[i].active && bullets[i].friendly)
+      return;
+  }
+
+  // Find first available bullet in array and initialize/fire it
   for (i = 0; i < 10; i++)
   {
     if (!bullets[i].active)
@@ -55,7 +64,7 @@ void bullet_logic(unsigned long dt)
     {
       if (bullets[i].friendly)
       {
-        bullets[i].y -= .2f * dt;
+        bullets[i].y -= .6f * dt;
       }
       else
       {
