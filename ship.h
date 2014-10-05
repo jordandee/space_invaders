@@ -12,6 +12,7 @@ struct Ship
   int move_right;
   int move_left;
 
+  int alive;
 } ship;
 
 void ship_init();

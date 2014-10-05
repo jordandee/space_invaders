@@ -65,7 +65,10 @@ void handleEvents()
     {
       if (event.key.keysym.sym == SDLK_SPACE)
       {
-        bullet_fire(ship.rect.x + ship.rect.w/2 - 1, ship.rect.y, 1);
+        if (ship.alive)
+        {
+          bullet_fire(ship.rect.x + ship.rect.w/2 - 1, ship.rect.y, 1);
+        }
       }
     }
   }

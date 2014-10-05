@@ -8,11 +8,11 @@ add special red ship
 add special red ship sounds
 
 implement lives
-show lives at bottom
+implement ship/lvl reset with any key? after death
+show lives at bottom with ship images
 
 add blowing up frame to enemies being destroyed
-
-add collisions between bullets and ship
+add blowing up frame to ship being destroyed
 
 implement displaying/capping fps
 
@@ -23,6 +23,10 @@ add ability to track score with an integer
 add ability to convert integer to arcade style text
 add/test score display in arcade style text
 add ability to display/store high scores
+
+add levels or increased difficulty after all enemies die
+
+handle enemies hitting bottom of screen somehow, what does orig do?
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -54,3 +58,4 @@ add ability to display/store high scores
 -add ability to shoot to enemies
 
 -add collisions between bullets and enemies
+-add collisions between bullets and ship

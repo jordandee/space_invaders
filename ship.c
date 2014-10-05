@@ -11,6 +11,8 @@ void ship_init()
 
   ship.move_left = 0;
   ship.move_right = 0;
+
+  ship.alive = 1;
 }
 
 void ship_logic(unsigned long dt)
@@ -31,5 +33,8 @@ void ship_logic(unsigned long dt)
 
 void ship_render()
 {
-  SDL_BlitScaled(ship.surf, NULL, gScreen, &ship.rect);
+  if (ship.alive)
+  {
+    SDL_BlitScaled(ship.surf, NULL, gScreen, &ship.rect);
+  }
 }

@@ -2,6 +2,7 @@
 #include "collision.h"
 #include "enemy.h"
 #include "bullet.h"
+#include "ship.h"
 
 void checkCollisions()
 {
@@ -21,6 +22,18 @@ void checkCollisions()
             bullets[i].active = 0;
           }
         }
+      }
+    }
+  }
+
+  // Check if ship was shot down
+  for (i = 0; i < 10; i++)
+  {
+    if (bullets[i].active && !bullets[i].friendly && ship.alive)
+    {
+      if (checkRectCollision(&bullets[i].rect, &ship.rect))
+      {
+        ship.alive = 0;
       }
     }
   }
