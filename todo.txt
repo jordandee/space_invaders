@@ -4,7 +4,6 @@ make defense structures visually show damage in region they were hit
 figure out bullet timing limitations - enemy shot freq?
 add sound to shooting bullets
 
-add collisions between friendly and enemy bullets
 add collisions between friendly bullets and top of screen
 add collisions between friendly bullets and bottom of screen
 
@@ -71,3 +70,5 @@ handle enemies hitting bottom of screen(ship row), gameover, aliens invade
 
 -figure out bullet timing limitations - 1 ship shot at a time
 -implement 1 ship bullet at a time, increase bullet speed
+
+-add collisions between friendly and enemy bullets

@@ -37,6 +37,22 @@ void checkCollisions()
       }
     }
   }
+
+  // Check for bullets shooting down bullets
+  for (x = 0; x < 10; x++)
+  {
+    for (y = 0; y < 10; y++)
+    {
+      if (bullets[x].active && bullets[y].active && bullets[x].friendly && !bullets[y].friendly && x != y)
+      {
+        if (checkRectCollision(&bullets[x].rect, &bullets[y].rect))
+        {
+          bullets[x].active = 0;
+          bullets[y].active = 0;
+        }
+      }
+    }
+  }
 }
 
 int checkRectCollision(SDL_Rect* A, SDL_Rect* B)
