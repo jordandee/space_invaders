@@ -13,9 +13,13 @@ struct Enemy
 } enemy[11][5];
 
 int enemy_direction;
+int enemy_total;
+float enemy_speed;
 
 void enemy_init();
 void enemy_logic(unsigned long dt);
 void enemy_render();
+
+float getEnemySpeed();
 
 #endif

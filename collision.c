@@ -19,6 +19,7 @@ void checkCollisions()
           if (checkRectCollision(&bullets[i].rect, &enemy[x][y].rect))
           {
             enemy[x][y].alive = 0;
+            enemy_total--;
             bullets[i].active = 0;
           }
         }

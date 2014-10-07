@@ -7,8 +7,7 @@ add sound to shooting bullets
 add collisions between friendly bullets and top of screen
 add collisions between friendly bullets and bottom of screen
 
-implement enemies speeding up after an enemy is shot down (exponential)
-implement enemies animating faster after an enemie is shot down
+implement enemies animating faster after an enemy is shot down
 
 add special red command ship
 figure out how to make red command ship appear once randomly mid-wave
@@ -72,3 +71,5 @@ handle enemies hitting bottom of screen(ship row), gameover, aliens invade
 -implement 1 ship bullet at a time, increase bullet speed
 
 -add collisions between friendly and enemy bullets
+
+-implement enemies speeding up after an enemy is shot down (exponential) (completed with switch/case, would like to switch to mathematical expression at some point)
