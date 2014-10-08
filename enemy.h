@@ -15,6 +15,7 @@ struct Enemy
 int enemy_direction;
 int enemy_total;
 float enemy_speed;
+int enemy_animation_time;
 
 void enemy_init();
 void enemy_logic(unsigned long dt);

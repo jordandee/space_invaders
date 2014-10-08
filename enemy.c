@@ -49,6 +49,7 @@ void enemy_init()
 
   enemy_total = 55;
   enemy_speed = .1f;
+  enemy_animation_time = 750;
 }
 
 void enemy_logic(unsigned long dt)
@@ -95,7 +96,7 @@ void enemy_render()
     {
       if (enemy[x][y].alive)
       {
-        if (SDL_GetTicks() % 1500 < 750)
+        if (SDL_GetTicks() % (enemy_animation_time*2) < enemy_animation_time)
         {
           SDL_BlitScaled(enemy[x][y].surf[0], NULL, gScreen, &enemy[x][y].rect);
         }
@@ -125,6 +126,7 @@ float getEnemySpeed()
     case 47:
     case 46:
       speed = .01f;
+      enemy_animation_time = 700;
       break;
     case 45:
     case 44:
@@ -135,6 +137,7 @@ float getEnemySpeed()
     case 39:
     case 38:
       speed = .02f;
+      enemy_animation_time = 650;
       break;
     case 37:
     case 36:
@@ -144,6 +147,7 @@ float getEnemySpeed()
     case 32:
     case 31:
       speed = .04f;
+      enemy_animation_time = 600;
       break;
     case 30:
     case 29:
@@ -154,6 +158,7 @@ float getEnemySpeed()
     case 24:
     case 23:
       speed = .07f;
+      enemy_animation_time = 500;
       break;
     case 22:
     case 21:
@@ -162,6 +167,7 @@ float getEnemySpeed()
     case 18:
     case 17:
       speed = .1f;
+      enemy_animation_time = 400;
       break;
     case 16:
     case 15:
@@ -175,19 +181,23 @@ float getEnemySpeed()
     case 9:
     case 8:
       speed = .19f;
+      enemy_animation_time = 300;
       break;
     case 7:
     case 6:
     case 5:
     case 4:
       speed = .25f;
+      enemy_animation_time = 200;
       break;
     case 3:
     case 2:
       speed = .3f;
+      enemy_animation_time = 100;
       break;
     case 1:
       speed = .4f;
+      enemy_animation_time = 50;
       break;
     default:
       break;
