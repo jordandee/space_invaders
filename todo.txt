@@ -72,3 +72,5 @@ handle enemies hitting bottom of screen(ship row), gameover, aliens invade
 
 -implement enemies speeding up after an enemy is shot down (exponential) (completed with switch/case, would like to switch to mathematical expression at some point)
 -implement enemies animating faster after an enemy is shot down
+
+-create damaged and destroyed (gone) defense images
