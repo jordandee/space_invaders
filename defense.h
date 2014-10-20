@@ -7,7 +7,7 @@ struct Defense
   float y;
 
   SDL_Rect rect;
-  SDL_Surface* surf;
+  int state[11][2];
 
 } defense[4];
 

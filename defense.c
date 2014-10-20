@@ -4,13 +4,21 @@
 
 void defense_init()
 {
-  int i;
+  int i, x, y;
   for (i = 0; i < 4; i++)
   {
-    defense[i].rect.w = defense[i].surf->w * 2;
-    defense[i].rect.h = defense[i].surf->h * 2;
+    defense[i].rect.w = defensesurf1->w * 2;
+    defense[i].rect.h = defensesurf1->h * 2;
     defense[i].x = (SCREEN_WIDTH/4 - defense[i].rect.w/4) * (i + 1) - SCREEN_WIDTH/8;
     defense[i].y = SCREEN_HEIGHT*.7f;
+
+    for (y = 0; y < 2; y++)
+    {
+      for (x = 0; x < 11; x++)
+      {
+        defense[i].state[x][y] = 1;
+      }
+    }
   }
 }
 
@@ -29,6 +37,6 @@ void defense_render()
   int i;
   for (i = 0; i < 4; i++)
   {
-    SDL_BlitScaled(defense[i].surf, NULL, gScreen, &defense[i].rect);
+    SDL_BlitScaled(defensesurf1, NULL, gScreen, &defense[i].rect);
   }
 }

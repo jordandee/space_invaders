@@ -36,10 +36,9 @@ int init()
 int quit()
 {
   SDL_FreeSurface(ship.surf);
-  SDL_FreeSurface(defense[0].surf);
-  SDL_FreeSurface(defense[1].surf);
-  SDL_FreeSurface(defense[2].surf);
-  SDL_FreeSurface(defense[3].surf);
+  SDL_FreeSurface(defensesurf1);
+  SDL_FreeSurface(defensesurf2);
+  SDL_FreeSurface(defensesurf3);
   SDL_FreeSurface(enemysurf1a);
   SDL_FreeSurface(enemysurf2a);
   SDL_FreeSurface(enemysurf3a);
@@ -67,15 +66,23 @@ int loadImages()
     success = 0;
   }
 
-  int i;
-  for (i = 0; i < 4; i++)
+  defensesurf1 = SDL_LoadBMP("images/defense1.bmp");
+  if (defensesurf1 == NULL)
   {
-    defense[i].surf = SDL_LoadBMP("images/defense.bmp");
-    if (defense[i].surf == NULL)
-    {
-      printf("Defense BMP load failed: %s\n", SDL_GetError());
-      success = 0;
-    }
+    printf("Defense BMP load failed: %s\n", SDL_GetError());
+    success = 0;
+  }
+  defensesurf2 = SDL_LoadBMP("images/defense2.bmp");
+  if (defensesurf2 == NULL)
+  {
+    printf("Defense BMP load failed: %s\n", SDL_GetError());
+    success = 0;
+  }
+  defensesurf3 = SDL_LoadBMP("images/defense3.bmp");
+  if (defensesurf3 == NULL)
+  {
+    printf("Defense BMP load failed: %s\n", SDL_GetError());
+    success = 0;
   }
 
   enemysurf1a = SDL_LoadBMP("images/enemy1a.bmp");

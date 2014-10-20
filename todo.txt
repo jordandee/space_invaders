@@ -1,3 +1,4 @@
+render defenses by 11x2 rects based on state array
 add collisions between bullets and defense structures
 make defense structures visually show damage in region they were hit
 
@@ -74,3 +75,4 @@ handle enemies hitting bottom of screen(ship row), gameover, aliens invade
 -implement enemies animating faster after an enemy is shot down
 
 -create damaged and destroyed (gone) defense images
+-add state array to defense structures to keep track of damage to its parts
