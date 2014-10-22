@@ -1,5 +1,3 @@
-add collisions between bullets and defense structures
-make defense structures visually show damage in region they were hit
 
 figure out bullet timing limitations - enemy shot freq?
 add sound to shooting bullets
@@ -76,3 +74,5 @@ handle enemies hitting bottom of screen(ship row), gameover, aliens invade
 -create damaged and destroyed (gone) defense images
 -add state array to defense structures to keep track of damage to its parts
 -render defenses by 11x2 rects based on state array
+-add collisions between bullets and defense structures
+-make defense structures visually show damage in region they were hit

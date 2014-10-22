@@ -3,11 +3,12 @@
 #include "enemy.h"
 #include "bullet.h"
 #include "ship.h"
+#include "defense.h"
 
 void checkCollisions()
 {
   // Check for enemies being shot down
-  int x, y, i;
+  int x, y, i, j;
   for (y = 0; y < 5; y++)
   {
     for (x = 0; x < 11; x++)
@@ -50,6 +51,30 @@ void checkCollisions()
         {
           bullets[x].active = 0;
           bullets[y].active = 0;
+        }
+      }
+    }
+  }
+
+  // Check if bullets hit defense structures
+  for (i = 0; i < 4; i++)
+  {
+    for (y = 0; y < 2; y++)
+    {
+      for (x = 0; x < 11; x++)
+      {
+        for (j = 0; j < 10; j++)
+        {
+          if (bullets[j].active && (defense[i].state[x][y] < 3))
+          {
+            if (checkRectCollision(&bullets[j].rect, &defense[i].stretch[x][y]))
+            {
+              defense[i].state[x][y]++;
+              bullets[j].active = 0;
+            }
+
+          }
+
         }
       }
     }
