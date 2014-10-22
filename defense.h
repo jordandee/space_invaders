@@ -7,6 +7,8 @@ struct Defense
   float y;
 
   SDL_Rect rect;
+  SDL_Rect clip[11][2];
+  SDL_Rect stretch[11][2];
   int state[11][2];
 
 } defense[4];
