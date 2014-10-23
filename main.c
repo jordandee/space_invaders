@@ -10,6 +10,7 @@
 #include "defense.h"
 #include "bullet.h"
 #include "collision.h"
+#include "score.h"
 
 void handleEvents();
 void logic(unsigned long dt);
@@ -31,6 +32,7 @@ int main(int argc, char** argv)
   enemy_init();
   defense_init();
   bullet_init();
+  score_init();
 
   while(gRunning)
   {
@@ -97,6 +99,7 @@ void logic(unsigned long dt)
   enemy_logic(dt);
   defense_logic(dt);
   bullet_logic(dt);
+  score_logic(dt);
 
   checkCollisions();
 }
@@ -110,6 +113,7 @@ void render()
   enemy_render();
   defense_render();
   bullet_render();
+  score_render();
 
   SDL_UpdateWindowSurface(gWindow);
 }

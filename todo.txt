@@ -19,7 +19,6 @@ add blowing up frame to ship being destroyed
 implement displaying/capping fps
 
 implement scoring - 30pts type1, 20 type2, 10 type1, 50-300 command
-display a static score using arcade style text
 add ability to track score with an integer
 add ability to convert integer to arcade style text
 add/test score display in arcade style text
@@ -77,3 +76,4 @@ handle enemies hitting bottom of screen(ship row), gameover, aliens invade
 
 -create number bmps
 -create missing numbers in arcade style text
+-display a static score using arcade style text

@@ -23,4 +23,7 @@ SDL_Surface* defensesurf1;
 SDL_Surface* defensesurf2;
 SDL_Surface* defensesurf3;
 
+SDL_Surface* numbersurf[10];
+SDL_Rect gNumber_rect;
+
 #endif

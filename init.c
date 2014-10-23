@@ -1,5 +1,6 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
+#include <string.h>
 #include "globals.h"
 #include "ship.h"
 #include "defense.h"
@@ -35,6 +36,8 @@ int init()
 // Free Surfaces, Destroy window, Shutdown SDL2
 int quit()
 {
+  int i;
+
   SDL_FreeSurface(ship.surf);
   SDL_FreeSurface(defensesurf1);
   SDL_FreeSurface(defensesurf2);
@@ -47,6 +50,12 @@ int quit()
   SDL_FreeSurface(enemysurf3b);
   SDL_FreeSurface(bulletsurfa);
   SDL_FreeSurface(bulletsurfb);
+
+  for (i = 0; i < 10; i++)
+  {
+    SDL_FreeSurface(numbersurf[i]);
+  }
+
   SDL_DestroyWindow(gWindow);
   SDL_Quit();
 
@@ -56,7 +65,8 @@ int quit()
 // Load the images needed for playing the game
 int loadImages()
 {
-  int success = 1;
+  int i, success = 1;
+  char str[24], nstr[2] = "0";
 
   // bmp format needs to be 24 bit, R8G8B8
   ship.surf = SDL_LoadBMP("images/ship.bmp");
@@ -134,6 +144,21 @@ int loadImages()
   {
     printf("Bullet BMP load failed: %s\n", SDL_GetError());
     success = 0;
+  }
+
+  for (i = 0; i < 10; i++)
+  {
+    strcpy(str, "images/number");
+    nstr[0] = '0' + (char)i;
+    strcat(str, nstr);
+    strcat(str, ".bmp");
+
+    numbersurf[i] = SDL_LoadBMP(str);
+    if (numbersurf[i] == NULL)
+    {
+      printf("Number BMP load failed: %s\n", SDL_GetError());
+      success = 0;
+    }
   }
 
   return success;
