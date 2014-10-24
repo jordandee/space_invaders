@@ -1,5 +1,6 @@
 #include <SDL2/SDL.h>
 #include "collision.h"
+#include "globals.h"
 #include "enemy.h"
 #include "bullet.h"
 #include "ship.h"
@@ -22,6 +23,14 @@ void checkCollisions()
             enemy[x][y].alive = 0;
             enemy_total--;
             bullets[i].active = 0;
+
+            // Increase score based on enemy type
+            if (y == 0)
+              gScore += 30;
+            else if (y == 1 || y == 2)
+              gScore += 20;
+            else
+              gScore += 10;
           }
         }
       }
