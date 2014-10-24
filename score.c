@@ -4,6 +4,8 @@
 
 void score_init()
 {
+  gScore = 1337;
+
   gNumber_rect.w = numbersurf[0]->w * 2;
   gNumber_rect.h = numbersurf[0]->h * 2;
 }
@@ -14,13 +16,20 @@ void score_logic(unsigned long dt)
 
 void score_render()
 {
+  int n;
+
   gNumber_rect.x = 16;
   gNumber_rect.y = 16;
-  SDL_BlitScaled(numbersurf[1], NULL, gScreen, &gNumber_rect);
+
+  n = (gScore/1000) % 10;
+  SDL_BlitScaled(numbersurf[n], NULL, gScreen, &gNumber_rect);
   gNumber_rect.x = 48;
-  SDL_BlitScaled(numbersurf[3], NULL, gScreen, &gNumber_rect);
+  n = (gScore/100) % 10;
+  SDL_BlitScaled(numbersurf[n], NULL, gScreen, &gNumber_rect);
   gNumber_rect.x = 80;
-  SDL_BlitScaled(numbersurf[3], NULL, gScreen, &gNumber_rect);
+  n = (gScore/10) % 10;
+  SDL_BlitScaled(numbersurf[n], NULL, gScreen, &gNumber_rect);
   gNumber_rect.x = 112;
-  SDL_BlitScaled(numbersurf[7], NULL, gScreen, &gNumber_rect);
+  n = gScore % 10;
+  SDL_BlitScaled(numbersurf[n], NULL, gScreen, &gNumber_rect);
 }

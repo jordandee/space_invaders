@@ -8,6 +8,7 @@ const int SCREEN_WIDTH;
 const int SCREEN_HEIGHT;
 
 int gRunning;
+int gScore;
 
 SDL_Surface* enemysurf1a;
 SDL_Surface* enemysurf1b;
