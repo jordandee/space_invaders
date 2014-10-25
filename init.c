@@ -50,6 +50,8 @@ int quit()
   SDL_FreeSurface(enemysurf3b);
   SDL_FreeSurface(bulletsurfa);
   SDL_FreeSurface(bulletsurfb);
+  SDL_FreeSurface(scoresurf);
+  SDL_FreeSurface(hiscoresurf);
 
   for (i = 0; i < 10; i++)
   {
@@ -159,6 +161,19 @@ int loadImages()
       printf("Number BMP load failed: %s\n", SDL_GetError());
       success = 0;
     }
+  }
+
+  scoresurf = SDL_LoadBMP("images/score.bmp");
+  if (scoresurf == NULL)
+  {
+    printf("Score BMP load failed: %s\n", SDL_GetError());
+    success = 0;
+  }
+  hiscoresurf = SDL_LoadBMP("images/hiscore.bmp");
+  if (hiscoresurf == NULL)
+  {
+    printf("Hi-Score BMP load failed: %s\n", SDL_GetError());
+    success = 0;
   }
 
   return success;

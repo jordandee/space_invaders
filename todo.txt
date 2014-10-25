@@ -19,8 +19,8 @@ add blowing up frame to ship being destroyed
 implement displaying/capping fps
 
 implement scoring for command ship - 50-300pts
-add score/hi score text display
-add ability to display/store high scores (also finalize score positions)
+add ability to store/recall high scores
+finalize score positions
 
 reset enemies and increase difficulty after all enemies die
 
@@ -78,3 +78,5 @@ handle enemies hitting bottom of screen(ship row), gameover, aliens invade
 -add ability to track score with an integer
 -add ability to convert integer to arcade style text
 -implement scoring for normal enemies- 30pts type1, 20 type2, 10 type3
+-add score/hi score text display
+-add ability to display high scores
