@@ -22,7 +22,7 @@ void checkCollisions()
           {
             enemy[x][y].alive = 0;
             enemy_total--;
-            bullets[i].active = 0;
+            bullet_destroy(i);
 
             // Increase score based on enemy type
             if (y == 0)
@@ -58,8 +58,8 @@ void checkCollisions()
       {
         if (checkRectCollision(&bullets[x].rect, &bullets[y].rect))
         {
-          bullets[x].active = 0;
-          bullets[y].active = 0;
+          bullet_destroy(x);
+          bullet_destroy(y);
         }
       }
     }
@@ -79,7 +79,7 @@ void checkCollisions()
             if (checkRectCollision(&bullets[j].rect, &defense[i].stretch[x][y]))
             {
               defense[i].state[x][y]++;
-              bullets[j].active = 0;
+              bullet_destroy(j);
             }
 
           }

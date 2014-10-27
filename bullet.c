@@ -64,7 +64,7 @@ void bullet_logic(unsigned long dt)
     {
       if (bullets[i].friendly)
       {
-        bullets[i].y -= .6f * dt;
+        bullets[i].y -= 1.0f * dt;
       }
       else
       {
@@ -73,7 +73,14 @@ void bullet_logic(unsigned long dt)
       bullets[i].rect.x = (int)bullets[i].x;
       bullets[i].rect.y = (int)bullets[i].y;
 
-      if (bullets[i].rect.y + bullets[i].rect.h < 0 || bullets[i].rect.y > SCREEN_HEIGHT)
+      // check if bullet hit top (score area)
+      if (bullets[i].friendly && (bullets[i].rect.y + bullets[i].rect.h < 128))
+      {
+        bullet_destroy(i);
+      }
+
+      // check if bullet hit bottom of screen (lives area)
+      if (!bullets[i].friendly && (bullets[i].rect.y > SCREEN_HEIGHT - 160))
       {
         bullet_destroy(i);
       }

@@ -1,9 +1,6 @@
 figure out bullet timing limitations - enemy shot freq?
 add sound to shooting bullets
 
-add collisions between friendly bullets and top of screen
-add collisions between friendly bullets and bottom of screen
-
 add special red command ship
 figure out how to make red command ship appear once randomly mid-wave
 add special red command ship sounds
@@ -80,3 +77,6 @@ handle enemies hitting bottom of screen(ship row), gameover, aliens invade
 -add score/hi score text display
 -add ability to display high scores
 -finalize score positions
+
+-add collisions between friendly bullets and top of screen
+-add collisions between enemy bullets and bottom of screen
