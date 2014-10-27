@@ -15,7 +15,7 @@ void score_init()
   gScore_rect.w = scoresurf->w * 2;
   gScore_rect.h = scoresurf->h * 2;
 
-  gHiscore_rect.x = 256;
+  gHiscore_rect.x = 736;
   gHiscore_rect.y = 16;
   gHiscore_rect.w = hiscoresurf->w * 2;
   gHiscore_rect.h = hiscoresurf->h * 2;
@@ -32,7 +32,7 @@ void score_render()
   // Display Score
   SDL_BlitScaled(scoresurf, NULL, gScreen, &gScore_rect);
 
-  gNumber_rect.x = 16;
+  gNumber_rect.x = 16 + 16;
   gNumber_rect.y = 64;
   n = (gScore/1000) % 10;
   SDL_BlitScaled(numbersurf[n], NULL, gScreen, &gNumber_rect);
@@ -52,7 +52,7 @@ void score_render()
   // Display Hi Score
   SDL_BlitScaled(hiscoresurf, NULL, gScreen, &gHiscore_rect);
 
-  gNumber_rect.x = 256;
+  gNumber_rect.x = 736 + 64;
   gNumber_rect.y = 64;
   n = (gHiscore/1000) % 10;
   SDL_BlitScaled(numbersurf[n], NULL, gScreen, &gNumber_rect);
