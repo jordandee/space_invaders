@@ -50,6 +50,13 @@ void enemy_init()
   enemy_total = 55;
   enemy_speed = .1f;
   enemy_animation_time = 750;
+
+  command.x = 460;
+  command.y = 64;
+  command.rect.x = (int)command.x;
+  command.rect.y = (int)command.y;
+  command.rect.w = command.surf[0]->w * 2;
+  command.rect.h = command.surf[0]->h * 2;
 }
 
 void enemy_logic(unsigned long dt)
@@ -107,6 +114,8 @@ void enemy_render()
       }
     }
   }
+
+  SDL_BlitScaled(command.surf[0], NULL, gScreen, &command.rect);
 }
 
 float getEnemySpeed()
