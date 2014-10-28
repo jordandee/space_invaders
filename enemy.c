@@ -52,11 +52,13 @@ void enemy_init()
   enemy_animation_time = 750;
 
   command.x = 460;
-  command.y = 64;
+  command.y = 128;
   command.rect.x = (int)command.x;
   command.rect.y = (int)command.y;
   command.rect.w = command.surf[0]->w * 2;
   command.rect.h = command.surf[0]->h * 2;
+  command.alive = 0;
+  command_spawned = 0;
 }
 
 void enemy_logic(unsigned long dt)
@@ -92,6 +94,20 @@ void enemy_logic(unsigned long dt)
       }
     }
   }
+
+  // Command ship spawn algorithm
+  // Random chance to spawn after enemies move two rows down
+  if (!command_spawned && (rand() % 50000 < 2*dt) && enemy[0][0].rect.y > 160)
+  {
+    command_spawned = 1;
+    command.alive = 1;
+  }
+  // force command ship to spawn if it gets close to end of wave
+  else if (!command_spawned && enemy_total < 8)
+  {
+    command_spawned = 1;
+    command.alive = 1;
+  }
 }
 
 void enemy_render()
@@ -115,7 +131,10 @@ void enemy_render()
     }
   }
 
-  SDL_BlitScaled(command.surf[0], NULL, gScreen, &command.rect);
+  if (command.alive)
+  {
+    SDL_BlitScaled(command.surf[0], NULL, gScreen, &command.rect);
+  }
 }
 
 float getEnemySpeed()
