@@ -51,7 +51,7 @@ void enemy_init()
   enemy_speed = .1f;
   enemy_animation_time = 750;
 
-  command.x = 460;
+  command.x = SCREEN_WIDTH;
   command.y = 128;
   command.rect.x = (int)command.x;
   command.rect.y = (int)command.y;
@@ -107,6 +107,17 @@ void enemy_logic(unsigned long dt)
   {
     command_spawned = 1;
     command.alive = 1;
+  }
+
+  if (command.alive)
+  {
+    command.x -= .04f * dt;
+    command.rect.x = (int)command.x;
+
+    if (command.rect.x + command.rect.w < 0)
+    {
+      command.alive = 0;
+    }
   }
 }
 
