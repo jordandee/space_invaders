@@ -1,12 +1,12 @@
 figure out bullet timing limitations - enemy shot freq?
 add sound to shooting bullets
 
-implement collision detection with command ship and bullets
 implement scoring system for command ship deaths
 add special red command ship sounds
 
 fix command ship distorting at edges of screen
 fix dead enemies still shooting
+fix mysterious all grid enemies dropping down off screen at once bug
 
 implement lives
 implement ship/lvl reset with any key? after death
@@ -88,3 +88,4 @@ handle enemies hitting bottom of screen(ship row), gameover, aliens invade
 -make red command ship appear once randomly mid-wave (spawn algo)
 -figure out ideal screen height placement
 -make command ship move across the screen
+-implement collision detection with command ship and bullets

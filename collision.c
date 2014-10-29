@@ -45,6 +45,7 @@ void checkCollisions()
       if (checkRectCollision(&bullets[i].rect, &ship.rect))
       {
         ship.alive = 0;
+        bullet_destroy(i);
       }
     }
   }
@@ -85,6 +86,19 @@ void checkCollisions()
           }
 
         }
+      }
+    }
+  }
+
+  // Check if command ship was shot down
+  for (i = 0; i < 10; i++)
+  {
+    if (bullets[i].active && bullets[i].friendly && command.alive)
+    {
+      if (checkRectCollision(&bullets[i].rect, &command.rect))
+      {
+        command.alive = 0;
+        bullet_destroy(i);
       }
     }
   }
