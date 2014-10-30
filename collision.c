@@ -99,6 +99,8 @@ void checkCollisions()
       {
         command.alive = 0;
         bullet_destroy(i);
+
+        gScore += command_points;
       }
     }
   }

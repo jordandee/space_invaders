@@ -18,6 +18,8 @@ float enemy_speed;
 int enemy_animation_time;
 
 int command_spawned;
+int command_speed;
+int command_points;
 
 void enemy_init();
 void enemy_logic(unsigned long dt);

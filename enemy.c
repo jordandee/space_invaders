@@ -97,21 +97,27 @@ void enemy_logic(unsigned long dt)
 
   // Command ship spawn algorithm
   // Random chance to spawn after enemies move two rows down
-  if (!command_spawned && (rand() % 50000 < 2*dt) && enemy[0][0].rect.y > 160)
+  if (!command_spawned && (rand() % 40000 < 2*dt) && enemy[0][0].rect.y > 160)
   {
     command_spawned = 1;
     command.alive = 1;
+
+    command_speed = (rand() % 3) + 1;
+    command_points = command_speed * 100;
   }
   // force command ship to spawn if it gets close to end of wave
   else if (!command_spawned && enemy_total < 8)
   {
     command_spawned = 1;
     command.alive = 1;
+
+    command_speed = (rand() % 3) + 1;
+    command_points = command_speed * 100;
   }
 
   if (command.alive)
   {
-    command.x -= .04f * dt;
+    command.x -= .04f * command_speed * dt;
     command.rect.x = (int)command.x;
 
     if (command.rect.x + command.rect.w < 0)
