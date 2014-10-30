@@ -4,8 +4,9 @@
 SDL_Window* gWindow;
 SDL_Surface* gScreen;
 
-const int SCREEN_WIDTH;
-const int SCREEN_HEIGHT;
+int SCREEN_WIDTH;
+int SCREEN_HEIGHT;
+int gScale;
 
 int gRunning;
 

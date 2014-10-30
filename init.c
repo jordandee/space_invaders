@@ -17,6 +17,21 @@ int init()
     success = 0;
   }
 
+  SDL_Rect rDisplay;
+  if (SDL_GetDisplayBounds(0, &rDisplay) != 0)
+  {
+    printf("SDL GetDisplay Bounds failed: %s\n", SDL_GetError());
+    success = 0;
+  }
+
+  if (rDisplay.h < 1050)
+    gScale = 1; // Use game resolution of 500x500
+  else
+    gScale = 2; // Use game resolution of 1000x1000
+
+  SCREEN_WIDTH = 500 * gScale;
+  SCREEN_HEIGHT = 500 * gScale;
+
   gWindow = SDL_CreateWindow("Space Invaders", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
   if (gWindow == NULL)
   {

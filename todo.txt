@@ -1,8 +1,6 @@
 figure out bullet timing limitations - enemy shot freq?
 add sound to shooting bullets
 
-use GetDisplayBounds to check resolution and scale game accordingly (2 sizes: 1000x1000 or 500x500)
-
 add special red command ship sounds
 
 fix command ship distorting at edges of screen
@@ -92,3 +90,5 @@ handle enemies hitting bottom of screen(ship row), gameover, aliens invade
 -make command ship move across the screen
 -implement collision detection with command ship and bullets
 -implement scoring system for command ship deaths
+
+-use GetDisplayBounds to check resolution and scale game accordingly (2 sizes: 1000x1000 or 500x500)

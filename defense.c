@@ -7,8 +7,8 @@ void defense_init()
   int i, x, y;
   for (i = 0; i < 4; i++)
   {
-    defense[i].rect.w = defensesurf1->w * 2;
-    defense[i].rect.h = defensesurf1->h * 2;
+    defense[i].rect.w = defensesurf1->w * gScale;
+    defense[i].rect.h = defensesurf1->h * gScale;
     defense[i].x = (SCREEN_WIDTH/4 - defense[i].rect.w/4) * (i + 1) - SCREEN_WIDTH/8;
     defense[i].y = SCREEN_HEIGHT*.7f;
     defense[i].rect.x = (int)defense[i].x;
@@ -25,10 +25,10 @@ void defense_init()
         defense[i].clip[x][y].x = x * defense[i].clip[x][y].w;
         defense[i].clip[x][y].y = y * defense[i].clip[x][y].h;
 
-        defense[i].stretch[x][y].w = defense[i].clip[x][y].w * 2;
-        defense[i].stretch[x][y].h = defense[i].clip[x][y].h * 2;
-        defense[i].stretch[x][y].x = defense[i].rect.x + (x * defense[i].clip[x][y].w * 2);
-        defense[i].stretch[x][y].y = defense[i].rect.y + (y * defense[i].clip[x][y].h * 2);
+        defense[i].stretch[x][y].w = defense[i].clip[x][y].w * gScale;
+        defense[i].stretch[x][y].h = defense[i].clip[x][y].h * gScale;
+        defense[i].stretch[x][y].x = defense[i].rect.x + (x * defense[i].clip[x][y].w * gScale);
+        defense[i].stretch[x][y].y = defense[i].rect.y + (y * defense[i].clip[x][y].h * gScale);
       }
     }
   }

@@ -34,29 +34,29 @@ void enemy_init()
   {
     for (x = 0; x < 11; x++)
     {
-      enemy[x][y].rect.w = enemy[x][y].surf[0]->w * 2;
-      enemy[x][y].rect.h = enemy[x][y].surf[0]->h * 2;
-      enemy[x][y].x = 64 * x; //SCREEN_WIDTH/2 - enemy[x][y].rect.w/2;
-      enemy[x][y].y = 64 * y + 128;//SCREEN_HEIGHT * ((y+1.0f)/10.0f);
+      enemy[x][y].rect.w = enemy[x][y].surf[0]->w * gScale;
+      enemy[x][y].rect.h = enemy[x][y].surf[0]->h * gScale;
+      enemy[x][y].x = 32 * gScale * x;
+      enemy[x][y].y = 32 * gScale * y + (64 * gScale);
 
       // Center enemies, correct offset since images are different sizes
       if (y == 0)
-        enemy[x][y].x += 4;
+        enemy[x][y].x += 2 * gScale;
       if (y == 1 || y == 2)
         enemy[x][y].x += 1;
     }
   }
 
   enemy_total = 55;
-  enemy_speed = .1f;
+  enemy_speed = .05f * gScale;
   enemy_animation_time = 750;
 
   command.x = SCREEN_WIDTH;
   command.y = 128;
   command.rect.x = (int)command.x;
   command.rect.y = (int)command.y;
-  command.rect.w = command.surf[0]->w * 2;
-  command.rect.h = command.surf[0]->h * 2;
+  command.rect.w = command.surf[0]->w * gScale;
+  command.rect.h = command.surf[0]->h * gScale;
   command.alive = 0;
   command_spawned = 0;
 }
@@ -68,7 +68,7 @@ void enemy_logic(unsigned long dt)
 
   enemy_speed = getEnemySpeed();
 
-  if (enemy[0][0].x < 0 || enemy[0][0].x + (11*64) > SCREEN_WIDTH)
+  if (enemy[0][0].x < 0 || enemy[0][0].x + (11*32*gScale) > SCREEN_WIDTH)
   {
     enemy_direction *= -1;
     move_down = 1;
@@ -82,7 +82,7 @@ void enemy_logic(unsigned long dt)
 
       if (move_down)
       {
-        enemy[x][y].y += 32;
+        enemy[x][y].y += 16 * gScale;
       }
 
       enemy[x][y].rect.x = (int)enemy[x][y].x;
@@ -90,7 +90,7 @@ void enemy_logic(unsigned long dt)
 
       if (rand() % 100000 < 2*dt)
       {
-        bullet_fire(enemy[x][y].rect.x + enemy[x][y].rect.w/2 - 2, enemy[x][y].rect.y + enemy[x][y].rect.h - 1, 0);
+        bullet_fire(enemy[x][y].rect.x + enemy[x][y].rect.w/2 - gScale, enemy[x][y].rect.y + enemy[x][y].rect.h - 1, 0);
       }
     }
   }
@@ -117,7 +117,7 @@ void enemy_logic(unsigned long dt)
 
   if (command.alive)
   {
-    command.x -= .04f * command_speed * dt;
+    command.x -= .02f * gScale * command_speed * dt;
     command.rect.x = (int)command.x;
 
     if (command.rect.x + command.rect.w < 0)
@@ -170,7 +170,7 @@ float getEnemySpeed()
     case 48:
     case 47:
     case 46:
-      speed = .01f;
+      speed = .0025f;
       enemy_animation_time = 700;
       break;
     case 45:
@@ -181,7 +181,7 @@ float getEnemySpeed()
     case 40:
     case 39:
     case 38:
-      speed = .02f;
+      speed = .005f;
       enemy_animation_time = 650;
       break;
     case 37:
@@ -191,7 +191,7 @@ float getEnemySpeed()
     case 33:
     case 32:
     case 31:
-      speed = .04f;
+      speed = .01f;
       enemy_animation_time = 600;
       break;
     case 30:
@@ -202,7 +202,7 @@ float getEnemySpeed()
     case 25:
     case 24:
     case 23:
-      speed = .07f;
+      speed = .0175f;
       enemy_animation_time = 500;
       break;
     case 22:
@@ -211,7 +211,7 @@ float getEnemySpeed()
     case 19:
     case 18:
     case 17:
-      speed = .1f;
+      speed = .025f;
       enemy_animation_time = 400;
       break;
     case 16:
@@ -219,33 +219,33 @@ float getEnemySpeed()
     case 14:
     case 13:
     case 12:
-      speed = .14f;
+      speed = .035f;
       break;
     case 11:
     case 10:
     case 9:
     case 8:
-      speed = .19f;
+      speed = .0475f;
       enemy_animation_time = 300;
       break;
     case 7:
     case 6:
     case 5:
     case 4:
-      speed = .25f;
+      speed = .0625f;
       enemy_animation_time = 200;
       break;
     case 3:
     case 2:
-      speed = .3f;
+      speed = .075f;
       enemy_animation_time = 100;
       break;
     case 1:
-      speed = .4f;
+      speed = .1f;
       enemy_animation_time = 50;
       break;
     default:
       break;
   }
-  return speed;
+  return speed * gScale;
 }

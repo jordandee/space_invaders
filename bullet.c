@@ -42,8 +42,8 @@ void bullet_fire(int x, int y, int friendly)
         bullets[i].surf = bulletsurfb;
       }
 
-      bullets[i].rect.w = bullets[i].surf->w * 2;
-      bullets[i].rect.h = bullets[i].surf->h * 2;
+      bullets[i].rect.w = bullets[i].surf->w * gScale;
+      bullets[i].rect.h = bullets[i].surf->h * gScale;
       break;
     }
   }
@@ -64,23 +64,23 @@ void bullet_logic(unsigned long dt)
     {
       if (bullets[i].friendly)
       {
-        bullets[i].y -= 1.0f * dt;
+        bullets[i].y -= .8f * gScale * dt;
       }
       else
       {
-        bullets[i].y += .2f * dt;
+        bullets[i].y += .12f * gScale * dt;
       }
       bullets[i].rect.x = (int)bullets[i].x;
       bullets[i].rect.y = (int)bullets[i].y;
 
       // check if bullet hit top (score area)
-      if (bullets[i].friendly && (bullets[i].rect.y + bullets[i].rect.h < 128))
+      if (bullets[i].friendly && (bullets[i].rect.y + bullets[i].rect.h < (64*gScale)))
       {
         bullet_destroy(i);
       }
 
       // check if bullet hit bottom of screen (lives area)
-      if (!bullets[i].friendly && (bullets[i].rect.y > SCREEN_HEIGHT - 160))
+      if (!bullets[i].friendly && (bullets[i].rect.y > SCREEN_HEIGHT - (80*gScale)))
       {
         bullet_destroy(i);
       }
