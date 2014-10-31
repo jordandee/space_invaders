@@ -69,6 +69,7 @@ int quit()
   SDL_FreeSurface(bulletsurfb);
   SDL_FreeSurface(scoresurf);
   SDL_FreeSurface(hiscoresurf);
+  SDL_FreeSurface(linesurf);
 
   for (i = 0; i < 10; i++)
   {
@@ -197,6 +198,13 @@ int loadImages()
   if (hiscoresurf == NULL)
   {
     printf("Hi-Score BMP load failed: %s\n", SDL_GetError());
+    success = 0;
+  }
+
+  linesurf = SDL_LoadBMP("images/line.bmp");
+  if (linesurf == NULL)
+  {
+    printf("Line BMP load failed: %s\n", SDL_GetError());
     success = 0;
   }
 

@@ -11,6 +11,7 @@
 #include "bullet.h"
 #include "collision.h"
 #include "score.h"
+#include "lives.h"
 
 void handleEvents();
 void logic(unsigned long dt);
@@ -33,6 +34,7 @@ int main(int argc, char** argv)
   defense_init();
   bullet_init();
   score_init();
+  lives_init();
 
   while(gRunning)
   {
@@ -100,6 +102,7 @@ void logic(unsigned long dt)
   defense_logic(dt);
   bullet_logic(dt);
   score_logic(dt);
+  lives_logic(dt);
 
   checkCollisions();
 }
@@ -114,6 +117,7 @@ void render()
   defense_render();
   bullet_render();
   score_render();
+  lives_render();
 
   SDL_UpdateWindowSurface(gWindow);
 }

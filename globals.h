@@ -10,6 +10,8 @@ int gScale;
 
 int gRunning;
 
+int gLives;
+
 SDL_Surface* enemysurf1a;
 SDL_Surface* enemysurf1b;
 SDL_Surface* enemysurf2a;
@@ -34,5 +36,8 @@ SDL_Surface* scoresurf;
 int gHiscore;
 SDL_Rect gHiscore_rect;
 SDL_Surface* hiscoresurf;
+
+SDL_Rect gLine_rect;
+SDL_Surface* linesurf;
 
 #endif

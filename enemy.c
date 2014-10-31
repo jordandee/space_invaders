@@ -52,7 +52,7 @@ void enemy_init()
   enemy_animation_time = 750;
 
   command.x = SCREEN_WIDTH;
-  command.y = 128;
+  command.y = 64 * gScale;
   command.rect.x = (int)command.x;
   command.rect.y = (int)command.y;
   command.rect.w = command.surf[0]->w * gScale;

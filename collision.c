@@ -45,6 +45,7 @@ void checkCollisions()
       if (checkRectCollision(&bullets[i].rect, &ship.rect))
       {
         ship.alive = 0;
+        gLives--;
         bullet_destroy(i);
       }
     }

@@ -7,10 +7,7 @@ fix command ship distorting at edges of screen
 fix dead enemies still shooting
 fix mysterious all grid enemies dropping down off screen at once bug
 
-implement lives
 implement ship/lvl reset with any key? after death
-show lives at bottom with ship images
-draw green separation line at bottom of screen
 
 add blowing up frame to enemies being destroyed
 add blowing up frame to command ship being destroyed
@@ -18,7 +15,6 @@ add blowing up frame to player ship being destroyed
 
 implement displaying/capping fps
 
-implement scoring for command ship - 50-300pts
 add ability to store/recall high scores
 
 reset enemies and increase difficulty after all enemies die
@@ -92,3 +88,7 @@ handle enemies hitting bottom of screen(ship row), gameover, aliens invade
 -implement scoring system for command ship deaths
 
 -use GetDisplayBounds to check resolution and scale game accordingly (2 sizes: 1000x1000 or 500x500)
+
+-implement lives
+-show extra lives at bottom with ship images
+-draw green separation line at bottom of screen
