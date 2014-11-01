@@ -65,6 +65,7 @@ void enemy_logic(unsigned long dt)
 {
   int x, y;
   int move_down = 0;
+  double rate;
 
   enemy_speed = getEnemySpeed();
 
@@ -82,13 +83,21 @@ void enemy_logic(unsigned long dt)
 
       if (move_down)
       {
+        // prevents enemies getting stuck on side then disappearing
+        enemy[x][y].x += enemy_speed * enemy_direction * dt;
+
         enemy[x][y].y += 16 * gScale;
       }
 
       enemy[x][y].rect.x = (int)enemy[x][y].x;
       enemy[x][y].rect.y = (int)enemy[x][y].y;
 
-      if (rand() % 100000 < 2*dt)
+      // spawn bullets with at an equal rate throughout game
+      // since enemies decrease, higher chance of a given alive enemy
+      //  shooting as time goes on
+      rate = 100000.0 * ((float)enemy_total+1.0)/55.0;
+
+      if (enemy[x][y].alive && rand() % (int)rate < 2*dt)
       {
         bullet_fire(enemy[x][y].rect.x + enemy[x][y].rect.w/2 - gScale, enemy[x][y].rect.y + enemy[x][y].rect.h - 1, 0);
       }
