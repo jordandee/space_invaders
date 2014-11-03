@@ -16,6 +16,7 @@ struct Ship
 } ship;
 
 void ship_init();
+void ship_reset();
 void ship_logic(unsigned long dt);
 void ship_render();
 

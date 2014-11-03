@@ -22,6 +22,7 @@ int command_speed;
 int command_points;
 
 void enemy_init();
+void enemy_reset();
 void enemy_logic(unsigned long dt);
 void enemy_render();
 

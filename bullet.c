@@ -4,11 +4,15 @@
 
 void bullet_init()
 {
+  bullet_reset();
+}
+
+void bullet_reset()
+{
   int i;
   for (i = 0; i < 10; i++)
   {
-    bullets[i].active = 0;
-    bullets[i].surf = NULL;
+    bullet_destroy(i);
   }
 }
 

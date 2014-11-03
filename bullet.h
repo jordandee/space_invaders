@@ -15,6 +15,7 @@ struct Bullet
 } bullets[10];
 
 void bullet_init();
+void bullet_reset();
 void bullet_fire(int x, int y, int friendly);
 void bullet_destroy(int n);
 void bullet_logic(unsigned long dt);

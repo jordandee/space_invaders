@@ -1,11 +1,7 @@
-figure out bullet timing limitations - enemy shot freq?
 add sound to shooting bullets
-
 add special red command ship sounds
 
 fix command ship distorting at edges of screen
-
-implement ship/lvl reset with any key? after death
 
 add blowing up frame to enemies being destroyed
 add blowing up frame to command ship being destroyed
@@ -93,3 +89,5 @@ handle enemies hitting bottom of screen(ship row), gameover, aliens invade
 
 -fix dead enemies still shooting
 -fix mysterious all grid enemies dropping down off screen at once bug
+
+-implement ship/lvl reset immediately after death

@@ -6,13 +6,20 @@ void ship_init()
 {
   ship.rect.w = ship.surf->w * gScale;
   ship.rect.h = ship.surf->h * gScale;
+
+  ship_reset();
+}
+
+void ship_reset()
+{
   ship.x = SCREEN_WIDTH/2 - ship.rect.w/2;
   ship.y = SCREEN_HEIGHT*.8f;
 
   ship.move_left = 0;
   ship.move_right = 0;
 
-  ship.alive = 1;
+  if (gLives > 0)
+    ship.alive = 1;
 }
 
 void ship_logic(unsigned long dt)

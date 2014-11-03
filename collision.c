@@ -47,6 +47,11 @@ void checkCollisions()
         ship.alive = 0;
         gLives--;
         bullet_destroy(i);
+
+        ship_reset();
+        enemy_reset();
+        defense_reset();
+        bullet_reset();
       }
     }
   }

@@ -18,8 +18,6 @@ void defense_init()
     {
       for (x = 0; x < 11; x++)
       {
-        defense[i].state[x][y] = 1;
-
         defense[i].clip[x][y].w = 4;
         defense[i].clip[x][y].h = 16;
         defense[i].clip[x][y].x = x * defense[i].clip[x][y].w;
@@ -29,6 +27,23 @@ void defense_init()
         defense[i].stretch[x][y].h = defense[i].clip[x][y].h * gScale;
         defense[i].stretch[x][y].x = defense[i].rect.x + (x * defense[i].clip[x][y].w * gScale);
         defense[i].stretch[x][y].y = defense[i].rect.y + (y * defense[i].clip[x][y].h * gScale);
+      }
+    }
+  }
+
+  defense_reset();
+}
+
+void defense_reset()
+{
+  int i, x, y;
+  for (i = 0; i < 4; i++)
+  {
+    for (y = 0; y < 2; y++)
+    {
+      for (x = 0; x < 11; x++)
+      {
+        defense[i].state[x][y] = 1;
       }
     }
   }

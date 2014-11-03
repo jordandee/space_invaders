@@ -10,7 +10,6 @@ void enemy_init()
   {
     for (x = 0; x < 11; x++)
     {
-      enemy[x][y].alive = 1;
       if (y == 0)
       {
         enemy[x][y].surf[0] = enemysurf1a;
@@ -26,16 +25,32 @@ void enemy_init()
         enemy[x][y].surf[0] = enemysurf3a;
         enemy[x][y].surf[1] = enemysurf3b;
       }
+      enemy[x][y].rect.w = enemy[x][y].surf[0]->w * gScale;
+      enemy[x][y].rect.h = enemy[x][y].surf[0]->h * gScale;
     }
   }
 
+  command.rect.w = command.surf[0]->w * gScale;
+  command.rect.h = command.surf[0]->h * gScale;
+
+  enemy_reset();
+}
+
+void enemy_reset()
+{
+  int x, y;
+
   enemy_direction = 1;
+  enemy_total = 55;
+  enemy_speed = .05f * gScale;
+  enemy_animation_time = 750;
+
   for (y = 0; y < 5; y++)
   {
     for (x = 0; x < 11; x++)
     {
-      enemy[x][y].rect.w = enemy[x][y].surf[0]->w * gScale;
-      enemy[x][y].rect.h = enemy[x][y].surf[0]->h * gScale;
+      enemy[x][y].alive = 1;
+
       enemy[x][y].x = 32 * gScale * x;
       enemy[x][y].y = 32 * gScale * y + (64 * gScale);
 
@@ -47,16 +62,8 @@ void enemy_init()
     }
   }
 
-  enemy_total = 55;
-  enemy_speed = .05f * gScale;
-  enemy_animation_time = 750;
-
   command.x = SCREEN_WIDTH;
   command.y = 64 * gScale;
-  command.rect.x = (int)command.x;
-  command.rect.y = (int)command.y;
-  command.rect.w = command.surf[0]->w * gScale;
-  command.rect.h = command.surf[0]->h * gScale;
   command.alive = 0;
   command_spawned = 0;
 }

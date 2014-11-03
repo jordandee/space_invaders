@@ -29,12 +29,12 @@ int main(int argc, char** argv)
 
   srand(SDL_GetTicks());
 
+  lives_init();
   ship_init();
   enemy_init();
   defense_init();
   bullet_init();
   score_init();
-  lives_init();
 
   while(gRunning)
   {

@@ -14,6 +14,7 @@ struct Defense
 } defense[4];
 
 void defense_init();
+void defense_reset();
 void defense_logic(unsigned long dt);
 void defense_render();
 
