@@ -1,11 +1,12 @@
 #include "SDL2/SDL.h"
+#include <stdio.h>
 #include "globals.h"
 #include "score.h"
 
 void score_init()
 {
   gScore = 0;
-  gHiscore = 0;
+  gHiscore = load_hi_score();
 
   gNumber_rect.w = numbersurf[0]->w * gScale;
   gNumber_rect.h = numbersurf[0]->h * gScale;
@@ -21,8 +22,61 @@ void score_init()
   gHiscore_rect.h = hiscoresurf->h * gScale;
 }
 
+int load_hi_score()
+{
+  FILE* fp;
+  fp = fopen("hiscore.txt", "r");
+  if (fp == NULL)
+  {
+    return 0;
+  }
+
+  int c = 0, score = 0;
+  while (c != EOF)
+  {
+    c = fgetc(fp);
+    if (c >= '0' && c <= '9')
+    {
+      score = score*10 + (c-'0');
+    }
+  }
+  fclose(fp);
+
+  return score;
+}
+
+void save_hi_score()
+{
+  FILE* fp;
+  fp = fopen("hiscore.txt", "w");
+  if (fp == NULL)
+  {
+    printf("Failed to write hiscore.txt\n");
+    return;
+  }
+
+  int c = 0;
+
+  c = (gHiscore / 1000) % 10 + '0';
+  fputc(c, fp);
+  c = (gHiscore / 100) % 10 + '0';
+  fputc(c, fp);
+  c = (gHiscore / 10) % 10 + '0';
+  fputc(c, fp);
+  c = gHiscore % 10 + '0';
+  fputc(c, fp);
+
+  fclose(fp);
+  return;
+}
+
+
 void score_logic(unsigned long dt)
 {
+  if (gScore > gHiscore)
+  {
+    gHiscore = gScore;
+  }
 }
 
 void score_render()

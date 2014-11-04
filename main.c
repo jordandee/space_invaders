@@ -48,6 +48,8 @@ int main(int argc, char** argv)
     render();
   }
 
+  save_hi_score();
+
   quit();
   return 0;
 }
