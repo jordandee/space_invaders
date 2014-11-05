@@ -2,6 +2,7 @@
 #include "globals.h"
 #include "enemy.h"
 #include "bullet.h"
+#include "defense.h"
 
 void enemy_init()
 {
@@ -33,6 +34,7 @@ void enemy_init()
   command.rect.w = command.surf[0]->w * gScale;
   command.rect.h = command.surf[0]->h * gScale;
 
+  gDifficulty = .5f;
   enemy_reset();
 }
 
@@ -42,7 +44,6 @@ void enemy_reset()
 
   enemy_direction = 1;
   enemy_total = 55;
-  enemy_speed = .05f * gScale;
   enemy_animation_time = 750;
 
   for (y = 0; y < 5; y++)
@@ -64,6 +65,8 @@ void enemy_reset()
 
   command.x = SCREEN_WIDTH;
   command.y = 64 * gScale;
+  command.rect.x = (int)command.x;
+  command.rect.y = (int)command.y;
   command.alive = 0;
   command_spawned = 0;
 }
@@ -99,10 +102,10 @@ void enemy_logic(unsigned long dt)
       enemy[x][y].rect.x = (int)enemy[x][y].x;
       enemy[x][y].rect.y = (int)enemy[x][y].y;
 
-      // spawn bullets with at an equal rate throughout game
+      // spawn bullets with at an equal rate throughout level
       // since enemies decrease, higher chance of a given alive enemy
-      //  shooting as time goes on
-      rate = 100000.0 * ((float)enemy_total+1.0)/55.0;
+      //  shooting as enemies are shot down and levels passed
+      rate = 100000.0 * ((float)enemy_total+1.0)/55.0 * (1.0/gDifficulty);
 
       if (enemy[x][y].alive && rand() % (int)rate < 2*dt)
       {
@@ -140,6 +143,16 @@ void enemy_logic(unsigned long dt)
     {
       command.alive = 0;
     }
+  }
+
+  // reset level if all enemies were killed
+  if (enemy_total == 0)
+  {
+    SDL_Delay(2000);
+    gDifficulty *= 2.0f;
+    enemy_reset();
+    bullet_reset();
+    defense_reset();
   }
 }
 
@@ -263,5 +276,5 @@ float getEnemySpeed()
     default:
       break;
   }
-  return speed * gScale;
+  return speed * gScale * gDifficulty;
 }

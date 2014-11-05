@@ -11,6 +11,7 @@ int gScale;
 int gRunning;
 
 int gLives;
+float gDifficulty;
 
 SDL_Surface* enemysurf1a;
 SDL_Surface* enemysurf1b;
