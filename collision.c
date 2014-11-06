@@ -110,6 +110,27 @@ void checkCollisions()
       }
     }
   }
+
+  // Check if enemies reach defense structures, game over
+  for (i = 0; i < 4; i++)
+  {
+    for (y = 0; y < 5; y++)
+    {
+      for (x = 0; x < 11; x++)
+      {
+        if (enemy[x][y].alive)
+        {
+          if (checkRectCollision(&defense[i].rect, &enemy[x][y].rect))
+          {
+            // game over, invaders have invaded
+            ship.alive = 0;
+            enemy[x][y].alive = 0;
+            gLives = 0;
+          }
+        }
+      }
+    }
+  }
 }
 
 int checkRectCollision(SDL_Rect* A, SDL_Rect* B)

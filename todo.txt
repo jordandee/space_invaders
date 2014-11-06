@@ -9,8 +9,6 @@ add blowing up frame to player ship being destroyed
 
 implement displaying/capping fps
 
-handle enemies hitting bottom of screen(ship row), gameover, aliens invade
-
 ////////////////////////////////////////////////////////////////////////////
 
 -switch from polling for keys to checking for keys currently pressed
@@ -91,3 +89,5 @@ handle enemies hitting bottom of screen(ship row), gameover, aliens invade
 -add ability to store/recall high scores
 
 -reset enemies and increase difficulty after all enemies die
+
+-handle enemies hitting bottom of screen(ship row), gameover, aliens invade
