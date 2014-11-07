@@ -1,5 +1,7 @@
+figure out how to add sounds with sdl2
 add sound to shooting bullets
-add special red command ship sounds
+add sound to enemy/ship death
+add command ship sounds: entrance and death/exit
 
 fix command ship distorting at edges of screen
 
@@ -91,3 +93,5 @@ implement displaying/capping fps
 -reset enemies and increase difficulty after all enemies die
 
 -handle enemies hitting bottom of screen(ship row), gameover, aliens invade
+
+-record sounds from original arcade game
