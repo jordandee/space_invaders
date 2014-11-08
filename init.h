@@ -5,5 +5,6 @@ int init();
 int quit();
 
 int loadImages();
+int loadSounds();
 
 #endif

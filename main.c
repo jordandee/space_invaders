@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 #include "globals.h"
 #include "init.h"
 #include "ship.h"
@@ -23,6 +24,7 @@ int main(int argc, char** argv)
     return 1;
 
   loadImages();
+  loadSounds();
 
   unsigned long lastTicks, deltaTicks;
   lastTicks = SDL_GetTicks();

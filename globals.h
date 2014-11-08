@@ -1,5 +1,6 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
+#include <SDL2/SDL_mixer.h>
 
 SDL_Window* gWindow;
 SDL_Surface* gScreen;
@@ -40,5 +41,8 @@ SDL_Surface* hiscoresurf;
 
 SDL_Rect gLine_rect;
 SDL_Surface* linesurf;
+
+//Mix_Music *gCommandEntrance;
+Mix_Chunk *gShot;
 
 #endif

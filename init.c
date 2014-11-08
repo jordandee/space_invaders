@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 #include <stdio.h>
 #include <string.h>
 #include "globals.h"
@@ -46,6 +47,12 @@ int init()
     success = 0;
   }
 
+  if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+  {
+    printf("SDL_mixer could not initialize: %s\n", Mix_GetError());
+    success = 0;
+  }
+
   return success;
 }
 
@@ -76,6 +83,10 @@ int quit()
     SDL_FreeSurface(numbersurf[i]);
   }
 
+  //Mix_FreeMusic(gCommandEntrance);
+  Mix_FreeChunk(gShot);
+
+  Mix_Quit();
   SDL_DestroyWindow(gWindow);
   SDL_Quit();
 
@@ -205,6 +216,20 @@ int loadImages()
   if (linesurf == NULL)
   {
     printf("Line BMP load failed: %s\n", SDL_GetError());
+    success = 0;
+  }
+
+  return success;
+}
+
+int loadSounds()
+{
+  int success = 1;
+
+  gShot = Mix_LoadWAV("sounds/shot.wav");
+  if (gShot == NULL)
+  {
+    printf("Failed to load shot.wav: %s\n", Mix_GetError());
     success = 0;
   }
 

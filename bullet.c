@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 #include "globals.h"
 #include "bullet.h"
 
@@ -40,6 +41,7 @@ void bullet_fire(int x, int y, int friendly)
       if (bullets[i].friendly)
       {
         bullets[i].surf = bulletsurfa;
+        Mix_PlayChannel(-1, gShot, 0);
       }
       else
       {
