@@ -123,6 +123,8 @@ void enemy_logic(unsigned long dt)
 
     command_speed = (rand() % 3) + 1;
     command_points = command_speed * 100;
+
+    Mix_FadeInChannel(-1, gCommandEntrance, -1, 2000);
   }
   // force command ship to spawn if it gets close to end of wave
   else if (!command_spawned && enemy_total < 8)
@@ -132,6 +134,7 @@ void enemy_logic(unsigned long dt)
 
     command_speed = (rand() % 3) + 1;
     command_points = command_speed * 100;
+    Mix_FadeInChannel(-1, gCommandEntrance, -1, 2000);
   }
 
   if (command.alive)
@@ -142,6 +145,8 @@ void enemy_logic(unsigned long dt)
     if (command.rect.x + command.rect.w < 0)
     {
       command.alive = 0;
+      Mix_HaltChannel(-1);
+      Mix_PlayChannel(-1, gCommandExit, 0);
     }
   }
 

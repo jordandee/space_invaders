@@ -22,6 +22,7 @@ void checkCollisions()
           {
             enemy[x][y].alive = 0;
             enemy_total--;
+            Mix_PlayChannel(-1, gShotdown, 0);
             bullet_destroy(i);
 
             // Increase score based on enemy type
@@ -46,6 +47,7 @@ void checkCollisions()
       {
         ship.alive = 0;
         gLives--;
+        Mix_PlayChannel(-1, gShotdown, 0);
         bullet_destroy(i);
 
         ship_reset();
@@ -104,6 +106,9 @@ void checkCollisions()
       if (checkRectCollision(&bullets[i].rect, &command.rect))
       {
         command.alive = 0;
+        Mix_HaltChannel(-1);
+        Mix_PlayChannel(-1, gCommandExit, 0);
+
         bullet_destroy(i);
 
         gScore += command_points;

@@ -83,8 +83,10 @@ int quit()
     SDL_FreeSurface(numbersurf[i]);
   }
 
-  //Mix_FreeMusic(gCommandEntrance);
   Mix_FreeChunk(gShot);
+  Mix_FreeChunk(gShotdown);
+  Mix_FreeChunk(gCommandEntrance);
+  Mix_FreeChunk(gCommandExit);
 
   Mix_Quit();
   SDL_DestroyWindow(gWindow);
@@ -230,6 +232,27 @@ int loadSounds()
   if (gShot == NULL)
   {
     printf("Failed to load shot.wav: %s\n", Mix_GetError());
+    success = 0;
+  }
+
+  gShotdown = Mix_LoadWAV("sounds/shotdown.wav");
+  if (gShotdown == NULL)
+  {
+    printf("Failed to load shotdown.wav: %s\n", Mix_GetError());
+    success = 0;
+  }
+
+  gCommandEntrance = Mix_LoadWAV("sounds/commandentrance.wav");
+  if (gCommandEntrance == NULL)
+  {
+    printf("Failed to load commandentrance.wav: %s\n", Mix_GetError());
+    success = 0;
+  }
+
+  gCommandExit = Mix_LoadWAV("sounds/commandexit.wav");
+  if (gCommandExit == NULL)
+  {
+    printf("Failed to load commandexit.wav: %s\n", Mix_GetError());
     success = 0;
   }
 

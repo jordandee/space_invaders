@@ -42,7 +42,9 @@ SDL_Surface* hiscoresurf;
 SDL_Rect gLine_rect;
 SDL_Surface* linesurf;
 
-//Mix_Music *gCommandEntrance;
 Mix_Chunk *gShot;
+Mix_Chunk *gShotdown;
+Mix_Chunk *gCommandEntrance;
+Mix_Chunk *gCommandExit;
 
 #endif
