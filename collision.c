@@ -50,6 +50,24 @@ void checkCollisions()
         Mix_PlayChannel(-1, gShotdown, 0);
         bullet_destroy(i);
 
+
+        // render explosion (swap between 2 frames)
+        SDL_BlitScaled(shipexplosionsurf, NULL, gScreen, &ship.rect);
+        SDL_UpdateWindowSurface(gWindow);
+        SDL_Delay(100);
+        SDL_BlitScaled(shipexplosionsurf2, NULL, gScreen, &ship.rect);
+        SDL_UpdateWindowSurface(gWindow);
+        SDL_Delay(100);
+        SDL_BlitScaled(shipexplosionsurf, NULL, gScreen, &ship.rect);
+        SDL_UpdateWindowSurface(gWindow);
+        SDL_Delay(100);
+        SDL_BlitScaled(shipexplosionsurf2, NULL, gScreen, &ship.rect);
+        SDL_UpdateWindowSurface(gWindow);
+        SDL_Delay(100);
+        SDL_BlitScaled(shipexplosionsurf, NULL, gScreen, &ship.rect);
+        SDL_UpdateWindowSurface(gWindow);
+        SDL_Delay(100);
+
         ship_reset();
         enemy_reset();
         defense_reset();

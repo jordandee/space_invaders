@@ -62,6 +62,8 @@ int quit()
   int i;
 
   SDL_FreeSurface(ship.surf);
+  SDL_FreeSurface(shipexplosionsurf);
+  SDL_FreeSurface(shipexplosionsurf2);
   SDL_FreeSurface(defensesurf1);
   SDL_FreeSurface(defensesurf2);
   SDL_FreeSurface(defensesurf3);
@@ -106,6 +108,18 @@ int loadImages()
   if (ship.surf == NULL)
   {
     printf("Ship BMP load failed: %s\n", SDL_GetError());
+    success = 0;
+  }
+  shipexplosionsurf = SDL_LoadBMP("images/shipexplosion.bmp");
+  if (shipexplosionsurf == NULL)
+  {
+    printf("Ship explosion BMP load failed: %s\n", SDL_GetError());
+    success = 0;
+  }
+  shipexplosionsurf2 = SDL_LoadBMP("images/shipexplosion2.bmp");
+  if (shipexplosionsurf2 == NULL)
+  {
+    printf("Ship explosion BMP load failed: %s\n", SDL_GetError());
     success = 0;
   }
 

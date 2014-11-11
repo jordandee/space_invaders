@@ -1,6 +1,5 @@
 add blowing up frame to enemies being destroyed
 add blowing up frame to command ship being destroyed
-add blowing up frame to player ship being destroyed
 
 implement displaying/capping fps
 
@@ -98,3 +97,5 @@ fix command ship distorting at edges of screen
 
 -add sound to enemy/ship death
 -add command ship sounds: entrance and death/exit
+
+-add blowing up frame to player ship being destroyed
