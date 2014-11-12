@@ -51,6 +51,7 @@ void enemy_reset()
     for (x = 0; x < 11; x++)
     {
       enemy[x][y].alive = 1;
+      enemy[x][y].death_time = 0;
 
       enemy[x][y].x = 32 * gScale * x;
       enemy[x][y].y = 32 * gScale * y + (64 * gScale);
@@ -69,6 +70,7 @@ void enemy_reset()
   command.rect.y = (int)command.y;
   command.alive = 0;
   command_spawned = 0;
+  command.death_time = 0;
 }
 
 void enemy_logic(unsigned long dt)
@@ -102,7 +104,7 @@ void enemy_logic(unsigned long dt)
       enemy[x][y].rect.x = (int)enemy[x][y].x;
       enemy[x][y].rect.y = (int)enemy[x][y].y;
 
-      // spawn bullets with at an equal rate throughout level
+      // spawn bullets with an equal fire rate throughout level
       // since enemies decrease, higher chance of a given alive enemy
       //  shooting as enemies are shot down and levels passed
       rate = 100000.0 * ((float)enemy_total+1.0)/55.0 * (1.0/gDifficulty);
@@ -179,12 +181,20 @@ void enemy_render()
           SDL_BlitScaled(enemy[x][y].surf[1], NULL, gScreen, &enemy[x][y].rect);
         }
       }
+      else if (SDL_GetTicks() - enemy[x][y].death_time < 300)
+      {
+        SDL_BlitScaled(enemyexplosionsurf, NULL, gScreen, &enemy[x][y].rect);
+      }
     }
   }
 
   if (command.alive)
   {
     SDL_BlitScaled(command.surf[0], NULL, gScreen, &command.rect);
+  }
+  else if (SDL_GetTicks() - command.death_time < 300)
+  {
+    SDL_BlitScaled(command.surf[1], NULL, gScreen, &command.rect);
   }
 }
 

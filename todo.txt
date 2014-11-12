@@ -1,10 +1,10 @@
-add blowing up frame to enemies being destroyed
-add blowing up frame to command ship being destroyed
-
 implement displaying/capping fps
 
 record better enemy/ship death sound
 
+make brief title screen
+
+fix bug of lives sometimes going to 0 when all enemies are destroyed
 fix command ship distorting at edges of screen
 
 ////////////////////////////////////////////////////////////////////////////
@@ -99,3 +99,5 @@ fix command ship distorting at edges of screen
 -add command ship sounds: entrance and death/exit
 
 -add blowing up frame to player ship being destroyed
+-add blowing up frame to enemies being destroyed
+-add blowing up frame to command ship being destroyed

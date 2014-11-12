@@ -21,6 +21,7 @@ void checkCollisions()
           if (checkRectCollision(&bullets[i].rect, &enemy[x][y].rect))
           {
             enemy[x][y].alive = 0;
+            enemy[x][y].death_time = SDL_GetTicks();
             enemy_total--;
             Mix_PlayChannel(-1, gShotdown, 0);
             bullet_destroy(i);
@@ -124,6 +125,7 @@ void checkCollisions()
       if (checkRectCollision(&bullets[i].rect, &command.rect))
       {
         command.alive = 0;
+        command.death_time = SDL_GetTicks();
         Mix_HaltChannel(-1);
         Mix_PlayChannel(-1, gCommandExit, 0);
 

@@ -73,7 +73,9 @@ int quit()
   SDL_FreeSurface(enemysurf1b);
   SDL_FreeSurface(enemysurf2b);
   SDL_FreeSurface(enemysurf3b);
+  SDL_FreeSurface(enemyexplosionsurf);
   SDL_FreeSurface(command.surf[0]);
+  SDL_FreeSurface(command.surf[1]);
   SDL_FreeSurface(bulletsurfa);
   SDL_FreeSurface(bulletsurfb);
   SDL_FreeSurface(scoresurf);
@@ -179,11 +181,23 @@ int loadImages()
     printf("Enemy BMP load failed: %s\n", SDL_GetError());
     success = 0;
   }
+  enemyexplosionsurf = SDL_LoadBMP("images/enemyexplosion.bmp");
+  if (enemyexplosionsurf == NULL)
+  {
+    printf("Enemy explosion BMP load failed: %s\n", SDL_GetError());
+    success = 0;
+  }
   
   command.surf[0] = SDL_LoadBMP("images/commandship.bmp");
   if (command.surf[0] == NULL)
   {
     printf("Command Ship BMP load failed: %s\n", SDL_GetError());
+    success = 0;
+  }
+  command.surf[1] = SDL_LoadBMP("images/commandexplosion.bmp");
+  if (command.surf[1] == NULL)
+  {
+    printf("Command Explosion BMP load failed: %s\n", SDL_GetError());
     success = 0;
   }
 

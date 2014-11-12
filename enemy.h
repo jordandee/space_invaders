@@ -8,6 +8,8 @@ struct Enemy
 
   int alive;
 
+  unsigned long death_time;
+
   SDL_Rect rect;
   SDL_Surface* surf[2];
 } enemy[11][5], command;
