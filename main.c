@@ -13,6 +13,7 @@
 #include "score.h"
 #include "lives.h"
 
+void displayTitle();
 void handleEvents();
 void logic(unsigned long dt);
 void render();
@@ -24,6 +25,8 @@ int main(int argc, char** argv)
 
   loadImages();
   loadSounds();
+
+  displayTitle();
 
   unsigned long lastTicks, deltaTicks;
   lastTicks = SDL_GetTicks();
@@ -61,6 +64,21 @@ int main(int argc, char** argv)
 
   quit();
   return 0;
+}
+
+void displayTitle()
+{
+  SDL_Rect title_rect;
+  title_rect.x = 0;
+  title_rect.y = 0;
+  title_rect.w = titlesurf->w * gScale;
+  title_rect.h = titlesurf->h * gScale;
+
+  SDL_FillRect(gScreen, &gScreen->clip_rect, 0x00000000);
+  SDL_BlitScaled(titlesurf, NULL, gScreen, &title_rect);
+  SDL_UpdateWindowSurface(gWindow);
+
+  SDL_Delay(1200);
 }
 
 void handleEvents()

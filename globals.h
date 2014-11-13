@@ -17,6 +17,8 @@ int gFPS;
 int gLives;
 float gDifficulty;
 
+SDL_Surface* titlesurf;
+
 SDL_Surface* enemysurf1a;
 SDL_Surface* enemysurf1b;
 SDL_Surface* enemysurf2a;

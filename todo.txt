@@ -1,9 +1,17 @@
-make brief title screen
+ESSENTIAL///////////////////////////////////////////////////////////////////
+
+EXTRAS//////////////////////////////////////////////////////////////////////
+
+implement 'well done earthling, this time you win' screen
+implement gameover screen instead of just stopping game
+add ability to restart after losing
+
+make defense destruction better, more like original
 
 fix bug of lives sometimes going to 0 when all enemies are destroyed
 fix command ship distorting at edges of screen
 
-////////////////////////////////////////////////////////////////////////////
+COMPLETED///////////////////////////////////////////////////////////////////
 
 -switch from polling for keys to checking for keys currently pressed
 
@@ -101,3 +109,5 @@ fix command ship distorting at edges of screen
 -implement displaying/capping fps
 
 -record better enemy/ship death sound
+
+-make brief title screen

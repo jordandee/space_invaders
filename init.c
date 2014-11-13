@@ -61,6 +61,7 @@ int quit()
 {
   int i;
 
+  SDL_FreeSurface(titlesurf);
   SDL_FreeSurface(ship.surf);
   SDL_FreeSurface(shipexplosionsurf);
   SDL_FreeSurface(shipexplosionsurf2);
@@ -106,6 +107,13 @@ int loadImages()
   char str[24], nstr[2] = "0";
 
   // bmp format needs to be 24 bit, R8G8B8
+  titlesurf = SDL_LoadBMP("images/title.bmp");
+  if (titlesurf == NULL)
+  {
+    printf("Title BMP load failed: %s\n", SDL_GetError());
+    success = 0;
+  }
+
   ship.surf = SDL_LoadBMP("images/ship.bmp");
   if (ship.surf == NULL)
   {
