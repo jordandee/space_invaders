@@ -11,6 +11,9 @@ int gScale;
 
 int gRunning;
 
+int gCapFPS;
+int gFPS;
+
 int gLives;
 float gDifficulty;
 

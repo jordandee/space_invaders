@@ -1,7 +1,6 @@
 // Space Invaders
 // A clone of the classic by Jordan McConnell
 
-#include <stdio.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
 #include "globals.h"
@@ -43,6 +42,14 @@ int main(int argc, char** argv)
     handleEvents();
 
     deltaTicks = SDL_GetTicks() - lastTicks;
+    if (gCapFPS)
+    {
+      if (deltaTicks < (unsigned long)(1000.0f/(float)gFPS))
+      {
+        SDL_Delay((unsigned long)(1000.0f/(float)gFPS) - deltaTicks);
+        deltaTicks = SDL_GetTicks() - lastTicks;
+      }
+    }
     lastTicks = SDL_GetTicks();
 
     logic(deltaTicks);
@@ -77,6 +84,10 @@ void handleEvents()
         {
           bullet_fire(ship.rect.x + ship.rect.w/2 - 1, ship.rect.y, 1);
         }
+      }
+      else if (event.key.keysym.sym == SDLK_c)
+      {
+        gCapFPS = !gCapFPS;
       }
     }
   }
